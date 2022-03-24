@@ -1,0 +1,158 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 840px;
+}
+
+.u-section-1 .u-group-1 {
+  width: 450px;
+  min-height: 275px;
+  margin: 172px auto 0 73px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px;
+}
+
+.u-section-1 .u-form-1 {
+  height: 169px;
+  width: 384px;
+  margin: 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-1 {
+  height: 20px;
+}
+
+.u-section-1 .u-label-2 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-2 {
+  height: 20px;
+}
+
+.u-section-1 .u-form-group-3 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-3 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-3 {
+  height: 20px;
+}
+
+.u-section-1 .u-form-group-4 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-4 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-4 {
+  height: 20px;
+}
+
+.u-section-1 .u-form-group-5 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-5 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-5 {
+  height: 20px;
+}
+
+.u-section-1 .u-form-group-6 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-6 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-6 {
+  height: 20px;
+}
+
+.u-section-1 .u-btn-1 {
+  font-size: 0.75rem;
+  padding: 2px 31px 3px 30px;
+}
+
+.u-section-1 .u-group-2 {
+  width: 450px;
+  min-height: 473px;
+  margin: -476px 73px 60px auto;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 30px;
+}
+
+.u-section-1 .u-form-2 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.u-section-1 .u-label-7 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-7 {
+  height: 20px;
+}
+
+.u-section-1 .u-label-8 {
+  font-size: 0.875rem;
+}
+
+.u-section-1 .u-input-8 {
+  height: 20px;
+}
+
+.u-section-1 .u-btn-2 {
+  font-size: 0.75rem;
+  padding: 2px 31px 3px 30px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-group-2 {
+    margin-top: -274px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-group-1 {
+    width: 340px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 320px;
+  }
+
+  .u-section-1 .u-group-2 {
+    width: 340px;
+    margin-right: 0;
+  }
+}
