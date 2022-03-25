@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -7,27 +8,27 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>HOME</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="HOME.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'SportsClubManagementApp/HOME.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.6.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
     
     <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "Site1",
-		"logo": "images/default-logo.png",
-		"sameAs": []
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Site1",
+    "logo": "{% static 'SportsClubManagementApp/images/default-logo.png'%}",
+    "sameAs": []
 }</script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="HOME">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
-  <body class="u-body u-xl-mode"><header class=" u-clearfix u-header u-section-row-container" id="sec-cb7a"><div class="u-section-rows">
+  <body data-home-page="HOME.html" data-home-page-title="HOME" class="u-body u-xl-mode"><header class=" u-clearfix u-header u-section-row-container" id="sec-cb7a"><div class="u-section-rows">
         <div class="u-clearfix u-palette-1-base u-section-row u-sticky u-sticky-fcf0 u-section-row-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="" id="sec-3c7e">
           <div class="u-clearfix u-sheet u-sheet-1">
             <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -39,7 +40,7 @@
                 </a>
               </div>
               <div class="u-custom-menu u-nav-container">
-                <ul class="u-nav u-spacing-2 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="HOME.html" style="padding: 4px 16px;">Home</a>
+                <ul class="u-nav u-spacing-2 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="home" style="padding: 4px 16px;">Home</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="FAN.html" style="padding: 4px 16px;">FAN</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="STAFF.html" style="padding: 4px 16px;">STAFF</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="PLAYER.html" style="padding: 4px 13px 4px 16px;">PLAYER</a>
@@ -49,7 +50,7 @@
                 <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                   <div class="u-inner-container-layout u-sidenav-overflow">
                     <div class="u-menu-close"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="HOME.html" style="padding: 10px 20px;">Home</a>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home" style="padding: 10px 20px;">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="FAN.html" style="padding: 10px 20px;">FAN</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="STAFF.html" style="padding: 10px 20px;">STAFF</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="PLAYER.html" style="padding: 10px 20px;">PLAYER</a>
@@ -59,7 +60,7 @@
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
               </div>
             </nav>
-            <a href="Player-Login.html" data-page-id="79718034" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login</a>
+            <a href="player_login" data-page-id="79718034" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login</a>
           </div>
           
           
@@ -104,7 +105,7 @@
               </div>
             </nav>
             <a href="https://nicepage.com" class="u-image u-logo u-image-1">
-              <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
+              <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
             </a>
           </div>
         </div>
@@ -120,14 +121,14 @@
           <div class="u-carousel-inner" role="listbox">
             <div class="u-active u-align-center u-carousel-item u-container-style u-slide">
               <div class="u-container-layout u-valign-top u-container-layout-1">
-                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-1" data-image-width="1280" data-image-height="716" src="images/9.svg">
+                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-1" data-image-width="1280" data-image-height="716" src="{% static 'SportsClubManagementApp/images/9.svg'%}">
                 <h4 class="u-text u-text-default u-text-2">Sample Headline</h4>
                 <p class="u-text u-text-3">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
             </div>
             <div class="u-align-center u-carousel-item u-container-style u-slide">
               <div class="u-container-layout u-valign-top u-container-layout-2">
-                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-2" data-image-width="1280" data-image-height="716" src="images/9.svg">
+                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-2" data-image-width="1280" data-image-height="716" src="{% static 'SportsClubManagementApp/images/9.svg'%}">
                 <h4 class="u-text u-text-default u-text-4">Sample Headline</h4>
                 <p class="u-text u-text-5">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
@@ -157,7 +158,7 @@
           <div class="u-gallery-inner u-gallery-inner-1">
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/download_3_.png" data-image-width="380" data-image-height="205">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/download_3_.png'%}" data-image-width="380" data-image-height="205">
               </div>
               <div class="u-over-slide u-shading u-over-slide-1">
                 <h3 class="u-gallery-heading"></h3>
@@ -166,7 +167,7 @@
             </div>
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/McDonalds-696x392.jpg" data-image-width="696" data-image-height="392">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/McDonalds-696x392.jpg'%}" data-image-width="696" data-image-height="392">
               </div>
               <div class="u-over-slide u-shading u-over-slide-2">
                 <h3 class="u-gallery-heading"></h3>
@@ -175,7 +176,7 @@
             </div>
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/images.png" data-image-width="300" data-image-height="168">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/images.png'%}" data-image-width="300" data-image-height="168">
               </div>
               <div class="u-over-slide u-shading u-over-slide-3">
                 <h3 class="u-gallery-heading"></h3>

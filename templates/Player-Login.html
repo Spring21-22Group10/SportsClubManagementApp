@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -7,10 +8,10 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Player Login</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Player-Login.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'SportsClubManagementApp/Player-Login.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.6.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
@@ -19,7 +20,7 @@
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": "Site1",
-		"logo": "images/default-logo.png",
+		"logo": "{% static 'SportsClubManagementApp/images/default-logo.png'%}",
 		"sameAs": []
 }</script>
     <meta name="theme-color" content="#478ac9">
@@ -39,7 +40,7 @@
                 </a>
               </div>
               <div class="u-custom-menu u-nav-container">
-                <ul class="u-nav u-spacing-2 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="HOME.html" style="padding: 4px 16px;">Home</a>
+                <ul class="u-nav u-spacing-2 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="home" style="padding: 4px 16px;">Home</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="FAN.html" style="padding: 4px 16px;">FAN</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="STAFF.html" style="padding: 4px 16px;">STAFF</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-90 u-border-hover-grey-50 u-button-style u-nav-link u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="PLAYER.html" style="padding: 4px 13px 4px 16px;">PLAYER</a>
@@ -49,7 +50,7 @@
                 <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                   <div class="u-inner-container-layout u-sidenav-overflow">
                     <div class="u-menu-close"></div>
-                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="HOME.html" style="padding: 10px 20px;">Home</a>
+                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="home" style="padding: 10px 20px;">Home</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="FAN.html" style="padding: 10px 20px;">FAN</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="STAFF.html" style="padding: 10px 20px;">STAFF</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="PLAYER.html" style="padding: 10px 20px;">PLAYER</a>
@@ -104,7 +105,7 @@
               </div>
             </nav>
             <a href="https://nicepage.com" class="u-image u-logo u-image-1">
-              <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
+              <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
             </a>
           </div>
         </div>
@@ -116,28 +117,24 @@
             <div class="u-form u-form-1">
               <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-name">
-                  <label for="name-f9ff" class="u-label u-label-1">Username</label>
-                  <input type="text" placeholder="Enter your Username" id="name-f9ff" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-1" required="">
+                  <label for="text-7d26" class="u-label u-label-4">Name</label>
+                  <input type="text" placeholder="Enter your name" id="text-7d26" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
                 </div>
-                <div class="u-form-email u-form-group">
-                  <label for="email-f9ff" class="u-label u-label-2">Password</label>
-                  <input type="email" placeholder="Enter a valid email address" id="email-f9ff" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-2" required="">
+                <div class="u-form-group u-form-group">
+                  <label for="name-f9ff" class="u-label u-label-1">Username</label>
+                  <input type="text" placeholder="Enter a Username" id="name-f9ff" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
+                </div>
+                <div class="u-form-group u-form-group-1">
+                  <label for="passowrd-f9ff" class="u-label u-label-2">Password</label>
+                  <input type="passowrd" placeholder="Enter a Password" id="passowrd-f9ff" name="passowrd" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
+                </div>
+                <div class="u-form-group u-form-group-2">
+                  <label for="passowrd-c790" class="u-label u-label-3">Confirm Password</label>
+                  <input type="passowrd" placeholder="Reenter your Password" id="passowrd-c790" name="passowrd2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
                 </div>
                 <div class="u-form-group u-form-group-3">
-                  <label for="text-c790" class="u-label u-label-3">Input</label>
-                  <input type="text" placeholder="" id="text-c790" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-3">
-                </div>
-                <div class="u-form-group u-form-group-4">
-                  <label for="text-7d26" class="u-label u-label-4">Input</label>
-                  <input type="text" placeholder="" id="text-7d26" name="text-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-4">
-                </div>
-                <div class="u-form-group u-form-group-5">
-                  <label for="text-c8aa" class="u-label u-label-5">Input</label>
-                  <input type="text" placeholder="" id="text-c8aa" name="text-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-5">
-                </div>
-                <div class="u-form-group u-form-group-6">
-                  <label for="text-c2b0" class="u-label u-label-6">Input</label>
-                  <input type="text" placeholder="" id="text-c2b0" name="text-3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-6">
+                  <label for="text-c790" class="u-label u-label-3">Email</label>
+                  <input type="email" placeholder="Enter a valid email address" id="text-c790" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
                 </div>
                 <div class="u-align-center u-form-group u-form-submit">
                   <a href="#" class="u-btn u-btn-submit u-button-style u-btn-1">Submit</a>
@@ -156,11 +153,11 @@
               <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-name">
                   <label for="name-f9ff" class="u-label u-label-7">Username</label>
-                  <input type="text" placeholder="Enter your Username" id="name-f9ff" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-7" required="">
+                  <input type="text" placeholder="Enter your Username" id="name-f9ff" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
                 </div>
                 <div class="u-form-email u-form-group">
-                  <label for="email-f9ff" class="u-label u-label-8">Password</label>
-                  <input type="email" placeholder="Enter a valid email address" id="email-f9ff" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input-8" required="">
+                  <label for="passowrd2-f9ff" class="u-label u-label-8">Password</label>
+                  <input type="passowrd" placeholder="Enter your Password" id="passowrd2-f9ff" name="passowrd2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input" required="">
                 </div>
                 <div class="u-align-center u-form-group u-form-submit">
                   <a href="#" class="u-btn u-btn-submit u-button-style u-btn-2">Submit</a>
@@ -182,7 +179,7 @@
           <div class="u-gallery-inner u-gallery-inner-1">
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/download_3_.png" data-image-width="380" data-image-height="205">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/download_3_.png'%}" data-image-width="380" data-image-height="205">
               </div>
               <div class="u-over-slide u-shading u-over-slide-1">
                 <h3 class="u-gallery-heading"></h3>
@@ -191,7 +188,7 @@
             </div>
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/McDonalds-696x392.jpg" data-image-width="696" data-image-height="392">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/McDonalds-696x392.jpg'%}" data-image-width="696" data-image-height="392">
               </div>
               <div class="u-over-slide u-shading u-over-slide-2">
                 <h3 class="u-gallery-heading"></h3>
@@ -200,7 +197,7 @@
             </div>
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/images.png" data-image-width="300" data-image-height="168">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/images.png'%}" data-image-width="300" data-image-height="168">
               </div>
               <div class="u-over-slide u-shading u-over-slide-3">
                 <h3 class="u-gallery-heading"></h3>

@@ -7,7 +7,10 @@ from .models import Student,Course_Taken
 
 def index(request):
 	return render(request,'index.html')
-
+def player_login(request):
+	return render(request,'Player-Login.html')
+def home(request):
+	return render(request,'HOME.html')
 def add_student(request):
 	if request.method == 'POST':
 		form = CreateStudentForm(request.POST)
