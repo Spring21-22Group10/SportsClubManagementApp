@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -7,10 +8,10 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>HOME</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="HOME.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'SportsClubManagementApp/HOME.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.6.5, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
@@ -19,7 +20,7 @@
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": "Site1",
-		"logo": "images/default-logo.png",
+		"logo": "{% static 'SportsClubManagementApp/images/default-logo.png'%}",
 		"sameAs": []
 }</script>
     <meta name="theme-color" content="#478ac9">
@@ -104,7 +105,7 @@
               </div>
             </nav>
             <a href="https://nicepage.com" class="u-image u-logo u-image-1">
-              <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
+              <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
             </a>
           </div>
         </div>
@@ -120,14 +121,14 @@
           <div class="u-carousel-inner" role="listbox">
             <div class="u-active u-align-center u-carousel-item u-container-style u-slide">
               <div class="u-container-layout u-valign-top u-container-layout-1">
-                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-1" data-image-width="1280" data-image-height="716" src="images/9.svg">
+                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-1" data-image-width="1280" data-image-height="716" src="{% static 'SportsClubManagementApp/images/9.svg'%}">
                 <h4 class="u-text u-text-default u-text-2">Sample Headline</h4>
                 <p class="u-text u-text-3">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
             </div>
             <div class="u-align-center u-carousel-item u-container-style u-slide">
               <div class="u-container-layout u-valign-top u-container-layout-2">
-                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-2" data-image-width="1280" data-image-height="716" src="images/9.svg">
+                <img alt="" class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-2" data-image-width="1280" data-image-height="716" src="{% static 'SportsClubManagementApp/images/9.svg'%}">
                 <h4 class="u-text u-text-default u-text-4">Sample Headline</h4>
                 <p class="u-text u-text-5">Sample text. Click to select the text box. Click again or double click to start editing the text.&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
@@ -157,7 +158,7 @@
           <div class="u-gallery-inner u-gallery-inner-1">
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/download_3_.png" data-image-width="380" data-image-height="205">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/download_3_.png'%}" data-image-width="380" data-image-height="205">
               </div>
               <div class="u-over-slide u-shading u-over-slide-1">
                 <h3 class="u-gallery-heading"></h3>
@@ -166,7 +167,7 @@
             </div>
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/McDonalds-696x392.jpg" data-image-width="696" data-image-height="392">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/McDonalds-696x392.jpg'%}" data-image-width="696" data-image-height="392">
               </div>
               <div class="u-over-slide u-shading u-over-slide-2">
                 <h3 class="u-gallery-heading"></h3>
@@ -175,7 +176,7 @@
             </div>
             <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
               <div class="u-back-slide">
-                <img class="u-back-image u-expanded" src="images/images.png" data-image-width="300" data-image-height="168">
+                <img class="u-back-image u-expanded" src="{% static 'SportsClubManagementApp/images/images.png'%}" data-image-width="300" data-image-height="168">
               </div>
               <div class="u-over-slide u-shading u-over-slide-3">
                 <h3 class="u-gallery-heading"></h3>
