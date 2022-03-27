@@ -22,18 +22,13 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AlterField(
-            model_name='student',
-            name='Student_id',
+            model_name='player',
+            name='Player_id',
             field=models.IntegerField(primary_key=True, serialize=False),
-        ),
-        migrations.AlterField(
-            model_name='student',
-            name='gpa',
-            field=models.IntegerField(default=0),
         ),
         migrations.AddField(
             model_name='course_taken',
-            name='Student_id',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app1.Student'),
+            name='Player_id',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app1.Player'),
         ),
     ]

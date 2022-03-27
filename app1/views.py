@@ -1,76 +1,47 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import CreateStudentForm,CreateCourseForm,GPAForm
-from .models import Student,Course_Taken
+from .forms import CreatePlayerForm,CreateCourseForm,FindPlayerForm
+from .models import Player,Course_Taken
 
 
 def index(request):
 	return render(request,'index.html')
-def player_login(request):
-	return render(request,'Player-Login.html')
+def add_player(request):
+	return render(request, 'Player-Login.html', {'form': form,'S':S})
 def home(request):
 	return render(request,'HOME.html')
-def add_student(request):
+
+def player_login(request):
 	if request.method == 'POST':
-		form = CreateStudentForm(request.POST)
-		if form.is_valid():
-			studentform = form.cleaned_data
-			first = studentform['Student_id']
-			second = studentform['Student_name']
-			last = studentform['gpa']
-			Student.objects.create(Student_id=first,Student_name=second,gpa=last)
-			return render(request, 'index.html')
-	else:
-		form = CreateStudentForm()
-	S=Student.objects.all()
-	return render(request, 'add_student.html', {'form': form,'S':S})
-
-
-def add_course(request):
-	if request.method == 'POST':
-		form = CreateCourseForm(request.POST)
-		if form.is_valid():
-			courseform = form.cleaned_data
-			Student_id = courseform['Student_id']
-			Course_id = courseform['Course_id']
-			Semester = courseform['Semester']
-			Number_of_credits = courseform['Number_of_credits']
-			Grade = courseform['Grade']
-			Course_Taken.objects.create(Student_id=Student_id,Course_id=Course_id,Semester=Semester,Number_of_credits=Number_of_credits,Grade=Grade)
-
-			listing = Course_Taken.objects.filter(Student_id=Student_id)
-			summ = 0.0
-			credits = 0
-			for l in listing:
-				summ =summ+ l.Grade * l.Number_of_credits
-				credits =credits+ l.Number_of_credits
-			avg = summ / credits
-			for e in Student.objects.all():
-				if e.Student_id==Student_id:
-					e.object.set(gpa=avg)
-			return render(request, 'index.html')
-	else:
-		form = CreateCourseForm()
-	S=Course_Taken.objects.all()
-	return render(request, 'add_course.html', {'form': form,'S':S})
-	
-
-def report(request):
-	if request.method == 'POST':
-		form = GPAForm(request.POST)
-
-		if form.is_valid():
-			courseform = form.cleaned_data
-			Student_id = courseform['Student_id']
-			for e in Student.objects.all():
-				if e.Student_id==Student_id:
-					A=e
-					return render(request, 'report_student.html', { 'form': form,'A':A})
-			return render(request,'report_student_not_found.html', { 'form': form })
-		
-	else:
-		form = GPAForm()
-	return render(request,'report_student.html',{'form':form})
+		print("test")
+		if request.POST.get('form_type')=='form':
+			print("test1")
+			form = CreatePlayerForm(request.POST)
+			if form.is_valid():
+				courseform = form.cleaned_data
+				second = courseform['Player_name']
+				third = courseform['password']
+				forth = courseform['confirm_password']
+				last = courseform['email']
+				next_id = Player.objects.last().Player_id + 1
+				Player.objects.create(Player_id=next_id,Player_name=second,password=third,confirm_password=forth,email=last)
+			return render(request,'index.html')
+		if request.POST.get('form_type') == 'form1':
+			print("test2")
+			form = findPlayerForm(request.POST)
+			if form.is_valid():
+				courseform = form.cleaned_data
+				Player_name = courseform['Player_name']
+				password = courseform['password']
+				for e in Player.objects.all():
+					if e.Player_name==Player_name and e.password==password:
+						A=e
+						return render(request, 'index.html', { 'form': form,'A':A})
+			return render(request,'index.html', { 'form': form })
+	form = CreatePlayerForm()
+	form1 = FindPlayerForm()
+	S = Player.objects.all()
+	return render(request, 'Player-Login.html', {'form': form, 'form1': form1,'S':S})
 
 		
