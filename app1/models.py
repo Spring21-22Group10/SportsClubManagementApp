@@ -6,18 +6,23 @@ from django.db import models
 class Player(models.Model):
     Player_id= models.IntegerField(primary_key=True)
     Player_name = models.CharField(max_length=30)
+    Player_username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
     confirm_password = models.CharField(max_length=30)
     email = models.CharField(max_length=30)
 
-
-class Course_Taken(models.Model):
-    Player_id=models.ForeignKey(Player,on_delete=models.CASCADE)
-    Course_id= models.IntegerField()
-    Semester=models.CharField(max_length=100)
-    Number_of_credits= models.IntegerField()
-    Grade = models.IntegerField()
-
 class Player2(models.Model):
-    Player_name = models.CharField(max_length=30)
+    Player_username = models.CharField(max_length=30,unique=True)
+    password = models.CharField(max_length=30)
+
+class Fan(models.Model):
+    Fan_id= models.IntegerField(primary_key=True)
+    Fan_name = models.CharField(max_length=30)
+    Fan_username = models.CharField(max_length=30,unique=True)
+    password = models.CharField(max_length=30)
+    confirm_password = models.CharField(max_length=30)
+    email = models.CharField(max_length=30)
+
+class Fan2(models.Model):
+    Fan_username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)

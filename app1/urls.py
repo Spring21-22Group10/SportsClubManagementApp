@@ -20,7 +20,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$',views.index),
+    url(r'^index',views.index),
     url(r'^player_login',views.player_login),
+    url(r'^fan_login',views.fan_login),
     url(r'^home',views.home),
-    url(r'^add_player',views.add_player),
 ]

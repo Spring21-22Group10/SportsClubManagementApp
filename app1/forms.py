@@ -1,32 +1,52 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Course_Taken,Player2
+from .models import Player,Player2,Fan,Fan2
 from django import forms
 
 # Create the form class.
 class CreatePlayerForm(ModelForm):
 	class Meta:
 		model = Player
-		fields = ['Player_name', 'email', 'password', 'confirm_password']
+		fields = ['Player_name','Player_username', 'email', 'password', 'confirm_password']
 		widgets ={
-			'Player_name' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your name", 'name':'Player'}),
+			'Player_name' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your name"}),
+			'Player_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a User Name"}),
 			'email' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your email"}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password"}),
-			'confirm_password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Reenter a password"}),
+			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+			'confirm_password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Re-enter a password", 'type':'password'}),
 
 		}
 
 class FindPlayerForm(ModelForm):
 	class Meta:
 		model = Player2
-		fields = ['Player_name', 'password']
+		fields = ['Player_username', 'password']
 		widgets ={
-			'Player_name' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your name", 'name':'Player2'}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password"}),
+			'Player_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
+			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
 
 		}
-# Create the form class.
-class CreateCourseForm(ModelForm):
+
+class CreateFanForm(ModelForm):
 	class Meta:
-		model = Course_Taken
-		fields = ['Player_id', 'Course_id', 'Semester','Number_of_credits','Grade']
+		model = Fan
+		fields = ['Fan_name','Fan_username', 'email', 'password', 'confirm_password']
+		widgets ={
+			'Fan_name' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your name"}),
+			'Fan_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a User Name"}),
+			'email' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your email"}),
+			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+			'confirm_password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Re-enter a password", 'type':'password'}),
+
+		}
+
+class FindFanForm(ModelForm):
+	class Meta:
+		model = Fan2
+		fields = ['Fan_username', 'password']
+		widgets ={
+			'Fan_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
+			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+
+		}
+
 

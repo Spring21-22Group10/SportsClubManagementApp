@@ -60,7 +60,6 @@
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
               </div>
             </nav>
-            <a href="Player-Login.html" data-page-id="79718034" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-6 u-btn-1">Login</a>
           </div>
           
           
@@ -128,17 +127,19 @@
           </div>
         </div>
         <div class="u-border-3 u-border-grey-75 u-container-style u-group u-shape-rectangle u-group-2">
-          <div class="u-container-layout u-container-layout-2">
+          <div class="u-container-layout u-container-layout-1">
             <div class="u-expanded-width u-form u-form-2">
-              {%  for student in S  %}
+              <div class="u-form u-form-1">
+              {%  for player in S  %}
                  <p>  {{Player.Player_id}} {{Player.Player_name}} {{Player.passowrd}} {{Player.email}} </p>
               {%  endfor  %}
               <form method="POST" >
                 {% csrf_token %}
                 {{ form1 }}                
-                <input type="hidden" name="form_type" value="form">
+                <input type="hidden" name="form_type" value="form1">
                 <button type="submit" class="u-btn u-btn-submit u-button-style u-btn-2">Submit</button>
               </form>
+              </div>
             </div>
           </div>
         </div>
