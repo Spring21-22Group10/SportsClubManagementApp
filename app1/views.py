@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import CreatePlayerForm,FindPlayerForm,CreateFanForm,FindFanForm
 from .models import Player,Fan
+from django.contrib import messages
 
 
 def index(request):
@@ -40,7 +41,10 @@ def player_login(request):
 					if e.Player_username==Player_username and e.password==password:
 						A=e
 						return render(request, 'HOME.html', { 'user': A.Player_username })
-			return render(request,'HOME.html')
+			form = CreatePlayerForm()
+			form1 = FindPlayerForm()
+			message = "Incorrect User Name or Password"
+			return render(request, 'Player-Login.html', {'form': form, 'form1': form1, 'message':message})
 	form = CreatePlayerForm()
 	form1 = FindPlayerForm()
 	S = Player.objects.all()
@@ -49,6 +53,7 @@ def player_login(request):
 def fan_login(request):
 	if request.method == 'POST':
 		if request.POST.get('form_type')=='form':
+			print("test")
 			form = CreateFanForm(request.POST)
 			if form.is_valid():
 				Fanform = form.cleaned_data
@@ -66,17 +71,20 @@ def fan_login(request):
 						A=e
 						return render(request, 'HOME.html', { 'user': A.Fan_username })
 		if request.POST.get('form_type') == 'form1':
-			print("test")
 			form = FindFanForm(request.POST)
 			if form.is_valid():
 				Fanform = form.cleaned_data
 				Fan_username = Fanform['Fan_username']
 				password = Fanform['password']
 				for e in Fan.objects.all():
+					print("test")
 					if e.Fan_username==Fan_username and e.password==password:
 						A=e
 						return render(request, 'HOME.html', { 'user': A.Fan_username })
-			return render(request,'HOME.html')
+			form = CreatePlayerForm()
+			form1 = FindPlayerForm()
+			message = "Incorrect User Name or Password"
+			return render(request, 'Fan-Login.html', {'form': form, 'form1': form1, 'message':message})
 	form = CreateFanForm()
 	form1 = FindFanForm()
 	S = Fan.objects.all()
