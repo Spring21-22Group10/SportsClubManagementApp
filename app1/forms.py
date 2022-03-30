@@ -8,11 +8,11 @@ class CreatePlayerForm(ModelForm):
 		model = Player
 		fields = ['Player_name','Player_username', 'email', 'password', 'confirm_password']
 		widgets ={
-			'Player_name' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your name"}),
-			'Player_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a User Name"}),
-			'email' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your email"}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
-			'confirm_password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Re-enter a password", 'type':'password'}),
+			'Player_name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
+			'Player_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name", 'style':'padding: 10px 10px 10px 10px'}),
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email", 'style':'padding: 10px 10px 10px 10px'}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
+			'confirm_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
 
 		}
 
@@ -21,8 +21,8 @@ class FindPlayerForm(ModelForm):
 		model = Player2
 		fields = ['Player_username', 'password']
 		widgets ={
-			'Player_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+			'Player_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
 
 		}
 
@@ -31,11 +31,11 @@ class CreateFanForm(ModelForm):
 		model = Fan
 		fields = ['Fan_name','Fan_username', 'email', 'password', 'confirm_password']
 		widgets ={
-			'Fan_name' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your name"}),
-			'Fan_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a User Name"}),
-			'email' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your email"}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
-			'confirm_password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Re-enter a password", 'type':'password'}),
+			'Fan_name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name"}),
+			'Fan_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name"}),
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email"}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
+			'confirm_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password'}),
 
 		}
 
@@ -44,8 +44,8 @@ class FindFanForm(ModelForm):
 		model = Fan2
 		fields = ['Fan_username', 'password']
 		widgets ={
-			'Fan_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+			'Fan_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
 
 		}
 
@@ -54,8 +54,8 @@ class FindStaffForm(ModelForm):
 		model = Staff
 		fields = ['Staff_username', 'password']
 		widgets ={
-			'Staff_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
-			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+			'Staff_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
 
 		}
 
