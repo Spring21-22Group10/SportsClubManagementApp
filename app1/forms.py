@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Player2,Fan,Fan2
+from .models import Player,Player2,Fan,Fan2,Staff
 from django import forms
 
 # Create the form class.
@@ -45,6 +45,16 @@ class FindFanForm(ModelForm):
 		fields = ['Fan_username', 'password']
 		widgets ={
 			'Fan_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
+			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
+
+		}
+
+class FindStaffForm(ModelForm):
+	class Meta:
+		model = Staff
+		fields = ['Staff_username', 'password']
+		widgets ={
+			'Staff_username' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter your User Name"}),
 			'password' : forms.TextInput(attrs={'class':'u-border-1 u-border-grey-30 u-input u-input-rectangle u-white u-input', 'placeholder':"Enter a password", 'type':'password'}),
 
 		}

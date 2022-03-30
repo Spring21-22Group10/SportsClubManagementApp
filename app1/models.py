@@ -26,3 +26,7 @@ class Fan(models.Model):
 class Fan2(models.Model):
     Fan_username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
+
+class Staff(models.Model):
+    Staff_username = models.CharField(max_length=30,unique=True)
+    password = models.CharField(max_length=30)

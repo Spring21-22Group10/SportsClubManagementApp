@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^index',views.index),
     url(r'^player_login',views.player_login),
     url(r'^fan_login',views.fan_login),
+    url(r'^staff_login',views.staff_login),
     url(r'^home',views.home),
 ]

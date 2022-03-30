@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import CreatePlayerForm,FindPlayerForm,CreateFanForm,FindFanForm
-from .models import Player,Fan
+from .forms import CreatePlayerForm,FindPlayerForm,CreateFanForm,FindFanForm,FindStaffForm
+from .models import Player,Fan, Staff
 from django.contrib import messages
 
 
@@ -81,13 +81,32 @@ def fan_login(request):
 					if e.Fan_username==Fan_username and e.password==password:
 						A=e
 						return render(request, 'HOME.html', { 'user': A.Fan_username })
-			form = CreatePlayerForm()
-			form1 = FindPlayerForm()
+			form = CreateFanForm()
+			form1 = FindFanForm()
 			message = "Incorrect User Name or Password"
 			return render(request, 'Fan-Login.html', {'form': form, 'form1': form1, 'message':message})
 	form = CreateFanForm()
 	form1 = FindFanForm()
 	S = Fan.objects.all()
 	return render(request, 'Fan-Login.html', {'form': form, 'form1': form1,'S':S})
+
+def staff_login(request):
+	if request.method == 'POST':
+		form = FindStaffForm(request.POST)
+		if form.is_valid():
+			Staffform = form.cleaned_data
+			Staff_username = Staffform['Staff_username']
+			password = Staffform['password']
+			for e in Staff.objects.all():
+				print("test")
+				if e.Staff_username==Staff_username and e.password==password:
+					A=e
+					return render(request, 'HOME.html', { 'user': A.Staff_username })
+		form = FindStaffForm()
+		message = "Incorrect User Name or Password"
+		return render(request, 'Staff-Login.html', {'form': form,'message':message})
+	form = FindStaffForm()
+	S = Staff.objects.all()
+	return render(request, 'Staff-Login.html', {'form': form,'S':S})
 
 		
