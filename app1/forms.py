@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Player2,Fan,Fan2,Staff
+from .models import Player,Player2,Fan,Fan2,Staff,PlayerForgot,FanForgot,StaffForgot
 from django import forms
 
 # Create the form class.
@@ -26,6 +26,15 @@ class FindPlayerForm(ModelForm):
 
 		}
 
+class ForgotPlayerForm(ModelForm):
+	class Meta:
+		model = PlayerForgot
+		fields = ['email']
+		widgets ={
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
+
+		}
+
 class CreateFanForm(ModelForm):
 	class Meta:
 		model = Fan
@@ -49,6 +58,15 @@ class FindFanForm(ModelForm):
 
 		}
 
+class ForgotFanForm(ModelForm):
+	class Meta:
+		model = FanForgot
+		fields = ['email']
+		widgets ={
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
+
+		}
+
 class FindStaffForm(ModelForm):
 	class Meta:
 		model = Staff
@@ -56,6 +74,15 @@ class FindStaffForm(ModelForm):
 		widgets ={
 			'Staff_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
 			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
+
+		}
+
+class ForgotStaffForm(ModelForm):
+	class Meta:
+		model = StaffForgot
+		fields = ['email']
+		widgets ={
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
 
 		}
 

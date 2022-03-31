@@ -9,11 +9,20 @@ class Player(models.Model):
     Player_username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
     confirm_password = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
+    email = models.CharField(max_length=30,unique=True)
 
 class Player2(models.Model):
     Player_username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
+
+class PlayerForgot(models.Model):
+    email = models.CharField(max_length=30,unique=True)
+
+class FanForgot(models.Model):
+    email = models.CharField(max_length=30,unique=True)
+
+class StaffForgot(models.Model):
+    email = models.CharField(max_length=30,unique=True)
 
 class Fan(models.Model):
     Fan_id= models.IntegerField(primary_key=True)

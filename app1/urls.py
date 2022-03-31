@@ -25,5 +25,8 @@ urlpatterns = [
     url(r'^player_signup',views.player_signup),
     url(r'^fan_login',views.fan_login),
     url(r'^staff_login',views.staff_login),
+    url(r'^forgot_password_player',views.forgot_password_player),
+    url(r'^forgot_password_fan',views.forgot_password_fan),
+    url(r'^forgot_password_staff',views.forgot_password_staff),
     url(r'^home',views.home),
 ]

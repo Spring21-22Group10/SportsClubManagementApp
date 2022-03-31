@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import CreatePlayerForm,FindPlayerForm,CreateFanForm,FindFanForm,FindStaffForm
+from .forms import CreatePlayerForm,FindPlayerForm,CreateFanForm,FindFanForm,FindStaffForm,ForgotPlayerForm,ForgotFanForm,ForgotStaffForm
 from .models import Player,Fan, Staff
 from django.contrib import messages
 
@@ -110,5 +110,64 @@ def staff_login(request):
 	form = FindStaffForm()
 	S = Staff.objects.all()
 	return render(request, 'Staff-Login.html', {'form': form,'S':S})
+
+def forgot_password_player(request):
+	if request.method == 'POST':
+		form = ForgotPlayerForm(request.POST)
+		if form.is_valid():
+			Forgotform = form.cleaned_data
+			email = Forgotform['email']
+			for e in Player.objects.all():
+				if e.email==email:
+					A=e
+					message = "email sent to : " + A.email
+					form = ForgotPlayerForm()
+					return render(request, 'Forgot-Password-Player.html', {'form': form, 'message':message})
+		form = ForgotPlayerForm()
+		print("test2")
+		message = "Email address not  found"
+		return render(request, 'Forgot-Password-Player.html', {'form': form,'message':message})
+	form = ForgotPlayerForm()
+	return render(request, 'Forgot-Password-Player.html', {'form': form})
+
+def forgot_password_fan(request):
+	if request.method == 'POST':
+		form = ForgotFanForm(request.POST)
+		if form.is_valid():
+			Forgotform = form.cleaned_data
+			email = Forgotform['email']
+			for e in Fan.objects.all():
+				if e.email==email:
+					A=e
+					message = "email sent to : " + A.email
+					form = ForgotFanForm()
+					return render(request, 'Forgot-Password-Fan.html', {'form': form, 'message':message})
+		form = ForgotFanForm()
+		print("test2")
+		message = "Email address not  found"
+		return render(request, 'Forgot-Password-Fan.html', {'form': form,'message':message})
+	form = ForgotFanForm()
+	return render(request, 'Forgot-Password-Fan.html', {'form': form})
+
+def forgot_password_staff(request):
+	if request.method == 'POST':
+		form = ForgotStaffForm(request.POST)
+		if form.is_valid():
+			Forgotform = form.cleaned_data
+			email = Forgotform['email']
+			for e in Staff.objects.all():
+				if e.email==email:
+					A=e
+					message = "email sent to : " + A.email
+					form = ForgotStaffForm()
+					return render(request, 'Forgot-Password-Staff.html', {'form': form, 'message':message})
+		form = ForgotStaffForm()
+		print("test2")
+		message = "Email address not  found"
+		return render(request, 'Forgot-Password-Staff.html', {'form': form,'message':message})
+	form = ForgotStaffForm()
+	return render(request, 'Forgot-Password-Staff.html', {'form': form})
+
+
 
 		
