@@ -4,38 +4,37 @@ from django.db import models
 
 
 class Player(models.Model):
-    Player_id= models.IntegerField(primary_key=True)
-    Player_name = models.CharField(max_length=30)
-    Player_username = models.CharField(max_length=30,unique=True)
+    id= models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=30)
+    username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
     confirm_password = models.CharField(max_length=30)
     email = models.CharField(max_length=30,unique=True)
 
-class Player2(models.Model):
-    Player_username = models.CharField(max_length=30,unique=True)
+class Find(models.Model):
+    username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
 
-class PlayerForgot(models.Model):
-    email = models.CharField(max_length=30,unique=True)
-
-class FanForgot(models.Model):
-    email = models.CharField(max_length=30,unique=True)
-
-class StaffForgot(models.Model):
-    email = models.CharField(max_length=30,unique=True)
-
 class Fan(models.Model):
-    Fan_id= models.IntegerField(primary_key=True)
-    Fan_name = models.CharField(max_length=30)
-    Fan_username = models.CharField(max_length=30,unique=True)
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=30)
+    username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
     confirm_password = models.CharField(max_length=30)
     email = models.CharField(max_length=30)
 
-class Fan2(models.Model):
-    Fan_username = models.CharField(max_length=30,unique=True)
-    password = models.CharField(max_length=30)
-
 class Staff(models.Model):
-    Staff_username = models.CharField(max_length=30,unique=True)
+    id = models.IntegerField(primary_key=True)
+    username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
+    email = models.CharField(max_length=30,unique=True)
+
+class Forgot(models.Model):
+    id = models.IntegerField(primary_key=True)
+    email = models.CharField(max_length=30,unique=True)
+
+class Reset(models.Model):
+    id = models.IntegerField(primary_key=True)
+    email = models.CharField(max_length=30,unique=True)
+    new_password = models.CharField(max_length=30)
+    confirm_new_password = models.CharField(max_length=30)

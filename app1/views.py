@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import CreatePlayerForm,FindPlayerForm,CreateFanForm,FindFanForm,FindStaffForm,ForgotPlayerForm,ForgotFanForm,ForgotStaffForm
+from .forms import CreateForm,FindForm,ForgotForm,ResetForm
 from .models import Player,Fan, Staff
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -14,160 +15,237 @@ def home(request):
 
 def player_login(request):
 	if request.method == 'POST':
-		form = FindPlayerForm(request.POST)
+		form = FindForm(request.POST)
 		if form.is_valid():
 			Playerform = form.cleaned_data
-			Player_username = Playerform['Player_username']
+			username = Playerform['username']
 			password = Playerform['password']
 			for e in Player.objects.all():
-				if e.Player_username==Player_username and e.password==password:
+				if e.username==username and e.password==password:
 					A=e
-					return render(request, 'HOME.html', { 'user': A.Player_username })
-		form = FindPlayerForm()
+					return render(request, 'HOME.html', { 'user': A.username })
+		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Player-Login.html', {'form': form, 'message':message})
-	form = FindPlayerForm()
+	form = FindForm()
 	S = Player.objects.all()
 	return render(request, 'Player-Login.html', {'form': form,'S':S})
 
 def player_signup(request):
 	if request.method == 'POST':
-		form = CreatePlayerForm(request.POST)
+		form = CreateForm(request.POST)
 		if form.is_valid():
 			Playerform = form.cleaned_data
-			Player_name = Playerform['Player_name']
-			Player_username = Playerform['Player_username']
+			name = Playerform['name']
+			username = Playerform['username']
 			password = Playerform['password']
 			confirm_password = Playerform['confirm_password']
 			email = Playerform['email']
 			next_id = 1
 			if(Player.objects.all()):
-				next_id = Player.objects.last().Player_id + 1
-			Player.objects.create(Player_id=next_id,Player_name=Player_name,Player_username=Player_username,password=password,confirm_password=confirm_password,email=email)
+				next_id = Player.objects.last().id + 1
+			Player.objects.create(id=next_id,name=name,username=username,password=password,confirm_password=confirm_password,email=email)
 			for e in Player.objects.all():
-				if e.Player_username==Player_username and e.password==password:
+				if e.username==username and e.password==password:
 					A=e
-					return render(request, 'HOME.html', { 'user': A.Player_username })
-	form = CreatePlayerForm()
+					return render(request, 'HOME.html', { 'user': A.username })
+	form = CreateForm()
 	S = Player.objects.all()
 	return render(request, 'Player-Signup.html', {'form': form,'S':S})
 
+def reset_password_player(request):
+	if request.method == 'POST':
+		form = ResetForm(request.POST)
+		if form.is_valid():
+			resetForm = form.cleaned_data
+			email = resetForm['email']
+			new_password = resetForm['new_password']
+			confirm_new_password = resetForm['confirm_new_password']
+			for e in Player.objects.all():
+				if e.email==email:
+					e.password = new_password
+					e.confirm_password = confirm_new_password
+					e.save()
+					message = 'Password reset succesfuly'
+					form = ResetForm()
+					return render(request, 'Reset-Password-Player.html', {'form': form, 'message':message})
+
+	form = ResetForm()
+	return render(request, 'Reset-Password-Player.html', {'form': form})
+
 def fan_login(request):
 	if request.method == 'POST':
-		form = FindFanForm(request.POST)
+		form = FindForm(request.POST)
 		if form.is_valid():
 			Fanform = form.cleaned_data
-			Fan_username = Fanform['Fan_username']
+			username = Fanform['username']
 			password = Fanform['password']
 			for e in Fan.objects.all():
-				if e.Fan_username==Fan_username and e.password==password:
+				if e.username==username and e.password==password:
 					A=e
-					return render(request, 'HOME.html', { 'user': A.Fan_username })
-		form = FindFanForm()
+					return render(request, 'HOME.html', { 'user': A.username })
+		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Fan-Login.html', {'form': form, 'message':message})
-	form = FindFanForm()
+	form = FindForm()
 	S = Fan.objects.all()
 	return render(request, 'Fan-Login.html', {'form': form,'S':S})
 
 def Fan_signup(request):
 	if request.method == 'POST':
-		form = CreateFanForm(request.POST)
+		form = CreateForm(request.POST)
 		if form.is_valid():
 			Fanform = form.cleaned_data
-			Fan_name = Fanform['Fan_name']
-			Fan_username = Fanform['Fan_username']
+			name = Fanform['name']
+			username = Fanform['username']
 			password = Fanform['password']
 			confirm_password = Fanform['confirm_password']
 			email = Fanform['email']
 			next_id = 1
 			if(Fan.objects.all()):
-				next_id = Player.objects.last().Fan_id + 1
-			Fan.objects.create(Fan_id=next_id,Fan_name=Fan_name,Fan_username=Fan_username,password=password,confirm_password=confirm_password,email=email)
+				next_id = Player.objects.last().id + 1
+			Fan.objects.create(id=next_id,name=name,username=username,password=password,confirm_password=confirm_password,email=email)
 			for e in Fan.objects.all():
-				if e.Fan_username==Fan_username and e.password==password:
+				if e.username==username and e.password==password:
 					A=e
-					return render(request, 'HOME.html', { 'user': A.Fan_username })
-	form = CreateFanForm()
+					return render(request, 'HOME.html', { 'user': A.username })
+	form = CreateForm()
 	S = Fan.objects.all()
 	return render(request, 'Fan-Signup.html', {'form': form,'S':S})
 
+def reset_password_fan(request):
+	if request.method == 'POST':
+		form = ResetForm(request.POST)
+		if form.is_valid():
+			resetForm = form.cleaned_data
+			email = resetForm['email']
+			new_password = resetForm['new_password']
+			confirm_new_password = resetForm['confirm_new_password']
+			for e in Fan.objects.all():
+				if e.email==email:
+					e.password = new_password
+					e.confirm_password = confirm_new_password
+					e.save()
+					message = 'Password reset succesfuly'
+					form = ResetForm()
+					return render(request, 'Reset-Password-Fan.html', {'form': form, 'message':message})
+
+	form = ResetForm()
+	return render(request, 'Reset-Password-Fan.html', {'form': form})
+
 def staff_login(request):
 	if request.method == 'POST':
-		form = FindStaffForm(request.POST)
+		form = FindForm(request.POST)
 		if form.is_valid():
 			Staffform = form.cleaned_data
-			Staff_username = Staffform['Staff_username']
+			username = Staffform['username']
 			password = Staffform['password']
 			for e in Staff.objects.all():
-				print("test")
-				if e.Staff_username==Staff_username and e.password==password:
+				if e.username==username and e.password==password:
 					A=e
-					return render(request, 'HOME.html', { 'user': A.Staff_username })
-		form = FindStaffForm()
+					return render(request, 'HOME.html', { 'user': A.username })
+		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Staff-Login.html', {'form': form,'message':message})
-	form = FindStaffForm()
+	form = FindForm()
 	S = Staff.objects.all()
 	return render(request, 'Staff-Login.html', {'form': form,'S':S})
 
+def reset_password_staff(request):
+	if request.method == 'POST':
+		form = ResetForm(request.POST)
+		if form.is_valid():
+			resetForm = form.cleaned_data
+			email = resetForm['email']
+			new_password = resetForm['new_password']
+			confirm_new_password = resetForm['confirm_new_password']
+			for e in Staff.objects.all():
+				if e.email==email:
+					e.password = new_password
+					e.confirm_password = confirm_new_password
+					e.save()
+					message = 'Password reset succesfuly'
+					form = ResetForm()
+					return render(request, 'Reset-Password-Staff.html', {'form': form, 'message':message})
+
+	form = ResetForm()
+	return render(request, 'Reset-Password-Staff.html', {'form': form})
+
 def forgot_password_player(request):
 	if request.method == 'POST':
-		form = ForgotPlayerForm(request.POST)
+		form = ForgotForm(request.POST)
 		if form.is_valid():
 			Forgotform = form.cleaned_data
 			email = Forgotform['email']
 			for e in Player.objects.all():
 				if e.email==email:
 					A=e
-					message = "email sent to : " + A.email
-					form = ForgotPlayerForm()
+					message_to_send = 'Hello ' + A.username + ',\n\n Please use the link below to reset your email. \n\n http://localhost:8000/reset_password_player'
+					send_mail(
+    						'Reset Password',
+    						message_to_send,
+    						'obazarbachi@gmail.com',
+    						['obazarbachi@gmail.com'],
+    						fail_silently=False,
+					)
+					message = "email sent to: " + A.email
+					form = ForgotForm()
 					return render(request, 'Forgot-Password-Player.html', {'form': form, 'message':message})
-		form = ForgotPlayerForm()
-		print("test2")
+		form = ForgotForm()
 		message = "Email address not  found"
 		return render(request, 'Forgot-Password-Player.html', {'form': form,'message':message})
-	form = ForgotPlayerForm()
+	form = ForgotForm()
 	return render(request, 'Forgot-Password-Player.html', {'form': form})
 
 def forgot_password_fan(request):
 	if request.method == 'POST':
-		form = ForgotFanForm(request.POST)
+		form = ForgotForm(request.POST)
 		if form.is_valid():
 			Forgotform = form.cleaned_data
 			email = Forgotform['email']
 			for e in Fan.objects.all():
 				if e.email==email:
 					A=e
-					message = "email sent to : " + A.email
-					form = ForgotFanForm()
+					message_to_send = 'Hello ' + A.username + ',\n\n Please use the link below to reset your email. \n\n http://localhost:8000/reset_password_fan'
+					send_mail(
+    						'Reset Password',
+    						message_to_send,
+    						'obazarbachi@gmail.com',
+    						['obazarbachi@gmail.com'],
+    						fail_silently=False,
+					)
+					message = "email sent to: " + A.email
+					form = ForgotForm()
 					return render(request, 'Forgot-Password-Fan.html', {'form': form, 'message':message})
-		form = ForgotFanForm()
-		print("test2")
+		form = ForgotForm()
 		message = "Email address not  found"
 		return render(request, 'Forgot-Password-Fan.html', {'form': form,'message':message})
-	form = ForgotFanForm()
+	form = ForgotForm()
 	return render(request, 'Forgot-Password-Fan.html', {'form': form})
 
 def forgot_password_staff(request):
 	if request.method == 'POST':
-		form = ForgotStaffForm(request.POST)
+		form = ForgotForm(request.POST)
 		if form.is_valid():
 			Forgotform = form.cleaned_data
 			email = Forgotform['email']
 			for e in Staff.objects.all():
 				if e.email==email:
 					A=e
-					message = "email sent to : " + A.email
-					form = ForgotStaffForm()
+					message_to_send = 'Hello ' + A.username + ',\n\n Please use the link below to reset your email. \n\n http://localhost:8000/reset_password_staff'
+					send_mail(
+    						'Reset Password',
+    						message_to_send,
+    						'obazarbachi@gmail.com',
+    						['obazarbachi@gmail.com'],
+    						fail_silently=False,
+					)
+					message = "email sent to: " + A.email
+					form = ForgotForm()
 					return render(request, 'Forgot-Password-Staff.html', {'form': form, 'message':message})
-		form = ForgotStaffForm()
-		print("test2")
+		form = ForgotForm()
 		message = "Email address not  found"
 		return render(request, 'Forgot-Password-Staff.html', {'form': form,'message':message})
-	form = ForgotStaffForm()
+	form = ForgotForm()
 	return render(request, 'Forgot-Password-Staff.html', {'form': form})
-
-
-
 		

@@ -1,89 +1,49 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Player2,Fan,Fan2,Staff,PlayerForgot,FanForgot,StaffForgot
+from .models import Player,Find,Fan,Staff,Forgot,Reset
 from django import forms
 
 # Create the form class.
-class CreatePlayerForm(ModelForm):
+class CreateForm(ModelForm):
 	class Meta:
 		model = Player
-		fields = ['Player_name','Player_username', 'email', 'password', 'confirm_password']
+		fields = ['name','username', 'email', 'password', 'confirm_password']
 		widgets ={
-			'Player_name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
-			'Player_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name", 'style':'padding: 10px 10px 10px 10px'}),
+			'name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
+			'username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name", 'style':'padding: 10px 10px 10px 10px'}),
 			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email", 'style':'padding: 10px 10px 10px 10px'}),
 			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
 			'confirm_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
 
 		}
 
-class FindPlayerForm(ModelForm):
+class FindForm(ModelForm):
 	class Meta:
-		model = Player2
-		fields = ['Player_username', 'password']
+		model = Find
+		fields = ['username', 'password']
 		widgets ={
-			'Player_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
+			'username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
 			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
 
 		}
 
-class ForgotPlayerForm(ModelForm):
+class ForgotForm(ModelForm):
 	class Meta:
-		model = PlayerForgot
+		model = Forgot
 		fields = ['email']
 		widgets ={
 			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
 
 		}
-
-class CreateFanForm(ModelForm):
+class ResetForm(ModelForm):
 	class Meta:
-		model = Fan
-		fields = ['Fan_name','Fan_username', 'email', 'password', 'confirm_password']
+		model = Reset
+		fields = ['email','new_password','confirm_new_password']
 		widgets ={
-			'Fan_name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name"}),
-			'Fan_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name"}),
-			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email"}),
-			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
-			'confirm_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password'}),
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email", 'style':'padding: 10px 10px 10px 10px'}),
+			'new_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
+			'confirm_new_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
 
 		}
 
-class FindFanForm(ModelForm):
-	class Meta:
-		model = Fan2
-		fields = ['Fan_username', 'password']
-		widgets ={
-			'Fan_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
-			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
-
-		}
-
-class ForgotFanForm(ModelForm):
-	class Meta:
-		model = FanForgot
-		fields = ['email']
-		widgets ={
-			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
-
-		}
-
-class FindStaffForm(ModelForm):
-	class Meta:
-		model = Staff
-		fields = ['Staff_username', 'password']
-		widgets ={
-			'Staff_username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
-			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password'}),
-
-		}
-
-class ForgotStaffForm(ModelForm):
-	class Meta:
-		model = StaffForgot
-		fields = ['email']
-		widgets ={
-			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your User Name"}),
-
-		}
 
 

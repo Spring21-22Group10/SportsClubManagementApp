@@ -1,15 +1,15 @@
  .u-section-1 {
-  min-height: 637px;
+  min-height: 1000px;
 }
 
 .u-section-1 .u-text-1 {
-  margin: 45px auto 0 calc(((100% - 1140px) / 2) + 435px);
+  margin: 45px auto 0 calc(((100% - 1140px) / 2) + 440px);
 }
 
 .u-section-1 .u-slider-1 {
-  width: 758px;
-  min-height: 512px;
-  margin: 20px auto 45px calc(((100% - 1140px) / 2) + 191px);
+  width: 1200px;
+  min-height: 1200px;
+  margin: auto auto auto calc(((100% - 2050px) / 2) + 430px);
 }
 
 .u-section-1 .u-carousel-indicators-1 {
@@ -24,7 +24,7 @@
 }
 
 .u-section-1 .u-image-1 {
-  height: 309px;
+  height: 600px;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -42,7 +42,7 @@
 }
 
 .u-section-1 .u-image-2 {
-  height: 309px;
+  height: 600px;
   margin-top: 0;
   margin-bottom: 0;
 }

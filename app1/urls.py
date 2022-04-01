@@ -28,5 +28,8 @@ urlpatterns = [
     url(r'^forgot_password_player',views.forgot_password_player),
     url(r'^forgot_password_fan',views.forgot_password_fan),
     url(r'^forgot_password_staff',views.forgot_password_staff),
+    url(r'^reset_password_player',views.reset_password_player),
+    url(r'^reset_password_fan',views.reset_password_fan),
+    url(r'^reset_password_staff',views.reset_password_staff),
     url(r'^home',views.home),
 ]
