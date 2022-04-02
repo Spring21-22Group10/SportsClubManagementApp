@@ -8,10 +8,15 @@ from django.core.mail import send_mail
 
 
 def index(request):
+	request.session['user'] = None
 	return render(request,'index.html')
 
 def home(request):
 	return render(request,'HOME.html',)
+
+def news(request):
+	user = request.session['user']
+	return render(request,'News.html',{ 'user':user })
 
 def player_login(request):
 	if request.method == 'POST':
@@ -23,6 +28,7 @@ def player_login(request):
 			for e in Player.objects.all():
 				if e.username==username and e.password==password:
 					A=e
+					request.session['user'] = A.username
 					return render(request, 'HOME.html', { 'user': A.username })
 		form = FindForm()
 		message = "Incorrect User Name or Password"
@@ -48,6 +54,7 @@ def player_signup(request):
 			for e in Player.objects.all():
 				if e.username==username and e.password==password:
 					A=e
+					request.session['user'] = A.username
 					return render(request, 'HOME.html', { 'user': A.username })
 	form = CreateForm()
 	S = Player.objects.all()
@@ -83,6 +90,7 @@ def fan_login(request):
 			for e in Fan.objects.all():
 				if e.username==username and e.password==password:
 					A=e
+					request.session['user'] = A.username
 					return render(request, 'HOME.html', { 'user': A.username })
 		form = FindForm()
 		message = "Incorrect User Name or Password"
@@ -108,6 +116,7 @@ def Fan_signup(request):
 			for e in Fan.objects.all():
 				if e.username==username and e.password==password:
 					A=e
+					request.session['user'] = A.username
 					return render(request, 'HOME.html', { 'user': A.username })
 	form = CreateForm()
 	S = Fan.objects.all()
@@ -143,6 +152,7 @@ def staff_login(request):
 			for e in Staff.objects.all():
 				if e.username==username and e.password==password:
 					A=e
+					request.session['user'] = A.username
 					return render(request, 'HOME.html', { 'user': A.username })
 		form = FindForm()
 		message = "Incorrect User Name or Password"
