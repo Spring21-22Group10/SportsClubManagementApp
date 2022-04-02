@@ -1,11 +1,4 @@
 {% load static %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-    {% endfor %}
-</ul>
-{% endif %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -80,9 +73,6 @@
           <div class="u-expanded-width u-form u-login-control u-form-1">
             <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom" name="form-2" style="padding: 10px;">
               <div class="u-form-group u-form-name">
-              {%  for student in S  %}
-                 <p>  {{Player.Player_id}} {{Player.Player_name}} {{Player.passowrd}} {{Player.email}} </p>
-              {%  endfor  %}
                 {% csrf_token %}
                 {{ form }}      
                 <input type="hidden" name="form_type" value="form">
