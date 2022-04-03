@@ -11,12 +11,19 @@ def index(request):
 	request.session['user'] = None
 	return render(request,'index.html')
 
-def home(request):
+def home_main(request):
 	return render(request,'HOME.html',)
 
 def news(request):
 	user = request.session['user']
 	return render(request,'News.html',{ 'user':user })
+
+def report(request):
+	user = request.session['user']
+	return render(request,'Report.html',{ 'user':user })
+	
+def home_staff(request):
+	return render(request,'HOME_Staff.html')
 
 def player_login(request):
 	if request.method == 'POST':
@@ -153,7 +160,7 @@ def staff_login(request):
 				if e.username==username and e.password==password:
 					A=e
 					request.session['user'] = A.username
-					return render(request, 'HOME.html', { 'user': A.username })
+					return render(request, 'HOME_Staff.html', { 'user': A.username })
 		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Staff-Login.html', {'form': form,'message':message})
