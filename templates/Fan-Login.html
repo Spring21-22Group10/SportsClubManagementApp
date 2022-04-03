@@ -1,11 +1,4 @@
 {% load static %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
-    {% endfor %}
-</ul>
-{% endif %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -49,7 +42,7 @@
               <div class="u-custom-menu u-nav-container">
                 <ul class="u-nav u-spacing-1 u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="News.html" style="padding: 28px 30px;">News</a>
 </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="Matches.html" style="padding: 28px 30px;">Matches</a>
-</li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="Tickets.html" style="padding: 28px 30px;">Tickets</a>
+</li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="tickets" style="padding: 28px 30px;">Tickets</a>
 </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="Teams.html" style="padding: 28px 30px;">Teams</a>
 </li></ul>
               </div>
@@ -59,7 +52,7 @@
                     <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="News.html" style="padding: 28px 30px;">News</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Matches.html" style="padding: 28px 30px;">Matches</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Tickets.html" style="padding: 28px 30px;">Tickets</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets" style="padding: 28px 30px;">Tickets</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Teams.html" style="padding: 28px 30px;">Teams</a>
 </li></ul>
                   </div>
@@ -80,9 +73,6 @@
           <div class="u-expanded-width u-form u-login-control u-form-1">
             <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom" name="form-2" style="padding: 10px;">
               <div class="u-form-group u-form-name">
-              {%  for student in S  %}
-                 <p>  {{Player.Player_id}} {{Player.Player_name}} {{Player.passowrd}} {{Player.email}} </p>
-              {%  endfor  %}
                 {% csrf_token %}
                 {{ form }}      
                 <input type="hidden" name="form_type" value="form">

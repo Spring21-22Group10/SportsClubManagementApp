@@ -33,4 +33,8 @@ urlpatterns = [
     url(r'^reset_password_staff',views.reset_password_staff),
     url(r'^home',views.home),
     url(r'^news',views.news),
+    url(r'^tickets',views.tickets),
+    url(r'^buyA',views.buyA),
+    url(r'^buyC',views.buyB),
+    url(r'^buyB',views.buyC),
 ]
