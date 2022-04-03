@@ -38,4 +38,5 @@ urlpatterns = [
     url(r'^buyA',views.buyA),
     url(r'^buyC',views.buyB),
     url(r'^buyB',views.buyC),
+    url(r'^Report',views.report),
 ]

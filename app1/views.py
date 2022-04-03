@@ -19,6 +19,10 @@ def home_main(request):
 def home_staff(request):
 	return render(request,'HOME_Staff.html',)
 
+def report(request):
+	user = request.session['user']
+	return render(request,'Report.html',{ 'user':user })
+
 def buyA(request):
 	return render(request,'HOME.html')
 
