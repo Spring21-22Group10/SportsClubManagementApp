@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import CreateForm,FindForm,ForgotForm,ResetForm
-from .models import Player,Fan,Staff,Match
+from .forms import CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm
+from .models import Player,Fan,Staff,Match, Expenses
 from django.contrib import messages
 from django.core.mail import send_mail
 import datetime
@@ -42,6 +42,26 @@ def report(request):
 	
 def home_staff(request):
 	return render(request,'HOME_Staff.html')
+
+def record_expense(request):
+	if request.method == 'POST':
+		form = ExpenseForm(request.POST)
+		if form.is_valid():
+			expenseForm = form.cleaned_data
+			department_expense = expenseForm['department_expense']
+			department_name = expenseForm['department_name']
+			expense_name = expenseForm['expense_name']
+			expense_date = expenseForm['expense_date']
+			next_id = 1
+			if(Player.objects.all()):
+				next_id = Player.objects.last().id + 1
+			Expenses.objects.create(id=next_id,department_expense=department_expense,department_name=department_name,expense_name=expense_name,expense_date=expense_date)
+			form = ExpenseForm()
+			message = "Reported expense successfully"
+			return render(request, 'Expenses.html', { 'form': form, "message": message })
+	form = ExpenseForm()
+	S = Expenses.objects.all()
+	return render(request, 'Expenses.html', {'form': form,'S':S})
 
 def tickets(request):
 	request.session['buying'] = True

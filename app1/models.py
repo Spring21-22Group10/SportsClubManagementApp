@@ -48,3 +48,20 @@ class Match(models.Model):
     priceA = models.IntegerField()
     priceB = models.IntegerField()
     priceC = models.IntegerField()
+
+class Expenses(models.Model):
+    id = models.IntegerField(primary_key=True)
+    department_expense = models.CharField(max_length=30)
+    department_name = models.CharField(max_length=30)
+    expense_name = models.CharField(max_length=30)
+    expense_date = models.CharField(max_length=30)
+
+
+class Revenue(models.Model):
+    id = models.IntegerField(primary_key=True)
+    merch_name = models.CharField(max_length=30)
+    merch_date = models.CharField(max_length=30)
+    merch_price = models.CharField(max_length=30)
+    ticket_name = models.CharField(max_length=30)
+    ticket_date = models.CharField(max_length=30)
+    ticket_price = models.CharField(max_length=30)

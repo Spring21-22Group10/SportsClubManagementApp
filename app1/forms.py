@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Find,Fan,Staff,Forgot,Reset
+from .models import Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue
 from django import forms
 
 # Create the form class.
@@ -45,5 +45,15 @@ class ResetForm(ModelForm):
 
 		}
 
+class ExpenseForm(ModelForm):
+	class Meta:
+		model = Expenses
+		fields = ['department_expense','department_name','expense_name','expense_date']
+		widgets ={
+			'department_expense' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter the expense amount", 'style':'padding: 10px 10px 10px 10px'}),
+			'department_name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your department name",  'style':'padding: 10px 10px 10px 10px'}),
+			'expense_name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter the type of expense", 'style':'padding: 10px 10px 10px 10px'}),
+			'expense_date' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter the date of expense", 'style':'padding: 10px 10px 10px 10px'}),
 
+		}
 
