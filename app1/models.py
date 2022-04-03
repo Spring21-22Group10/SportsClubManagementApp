@@ -38,3 +38,13 @@ class Reset(models.Model):
     email = models.CharField(max_length=30,unique=True)
     new_password = models.CharField(max_length=30)
     confirm_new_password = models.CharField(max_length=30)
+
+class Match(models.Model):
+    id = models.IntegerField(primary_key=True)
+    team1 = models.CharField(max_length=30)
+    team2 = models.CharField(max_length=30)
+    location = models.CharField(max_length=30)
+    date = models.DateField()
+    priceA = models.IntegerField()
+    priceB = models.IntegerField()
+    priceC = models.IntegerField()

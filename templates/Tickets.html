@@ -7,13 +7,15 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Forgot Password</title>
-    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'SportsClubManagementApp/Forgot-Password.css'%}" media="screen">
-    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js'%}" defer=""></script>
+    <title>Tickets</title>
+    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css'%}" media="screen">
+<link rel="stylesheet" href="{% static 'SportsClubManagementApp/Tickets.css'%}" media="screen">
+<script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js'%}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js'%}" defer=""></script>
-    <meta name="generator" content="Nicepage 4.7.1, nicepage.com">
+    <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    
     
     
     <script type="application/ld+json">{
@@ -24,7 +26,7 @@
 		"sameAs": []
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Forgot Password">
+    <meta property="og:title" content="Tickets">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
@@ -42,9 +44,14 @@
               <div class="u-custom-menu u-nav-container">
                 <ul class="u-nav u-spacing-1 u-unstyled u-nav-3"><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="news" style="padding: 28px 30px;">News</a>
 </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="Matches.html" style="padding: 28px 30px;">Matches</a>
-</li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="tickets" style="padding: 28px 30px;">Tickets</a>
+</li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="Tickets.html" style="padding: 28px 30px;">Tickets</a>
 </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="Teams.html" style="padding: 28px 30px;">Teams</a>
 </li></ul>
+              {% if user is not None%}
+              <a style="padding: 28px 300px;"></a>               <div class="dropdown">               <a href="index" >Log out</a>               </div>
+              {% else %}
+              <a style="padding: 28px 300px;"></a>               <div class="dropdown">                 <button class="dropbtn u-btn-round u-radius-6">Log In</button>                   <div class="dropdown-content">                       <a href="player_login">Player</a>                       <a href="fan_login">Fan</a>                       <a href="staff_login">Staff</a>                   </div>               </div>
+              {% endif %}
               </div>
               <div class="u-custom-menu u-nav-container-collapse">
                 <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -52,36 +59,94 @@
                     <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="news" style="padding: 28px 30px;">News</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Matches.html" style="padding: 28px 30px;">Matches</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets" style="padding: 28px 30px;">Tickets</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Tickets.html" style="padding: 28px 30px;">Tickets</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Teams.html" style="padding: 28px 30px;">Teams</a>
 </li></ul>
                   </div>
                 </div>
                 <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
               </div>
-            </nav>
-            <a href="index" class="u-image u-logo u-image-1">
+      </nav>
+      {% if user is not None%}
+      <a href="home" class="u-image u-logo u-image-1">
               <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
             </a>
+      {% else %}
+       <a href="index" class="u-image u-logo u-image-1">
+              <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
+            </a>
+      {% endif %}
           </div>
         </div>
       </div></header>
-    <section class="u-align-left u-clearfix u-gradient u-section-1" id="sec-d810">
-      <div class="u-container-style u-group u-radius-50 u-shape-round u-white u-group-1">
-        <div class="u-container-layout u-container-layout-1">
-          <h3 class="u-align-center u-text u-text-default u-text-1">Forgot Password</h3>
-          <div class="u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom" name="form-2" style="padding: 10px;">
-              <div class="u-form-group u-form-name">
-                {% csrf_token %}
-                {{ form }}      
-                <input type="hidden" name="form_type" value="form">
-              <div class="u-align-center u-form-group u-form-submit">
-                <br><a class="u-align-center">{{message}}</a><br>
-                <a href="#" class="u-align-center u-btn u-btn-round u-btn-submit u-button-style u-radius-17 u-btn-1" >submit</a>
-                <input type="submit" value="submit" class="u-form-control-hidden">
+    <section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="150" data-image-height="83" id="sec-0f58">
+      <img class="u-image u-image-round u-radius-10 u-image-1" src="{% static 'SportsClubManagementApp/images/teamLogo.png'%}" alt="" data-image-width="1259" data-image-height="1280">
+      <img class="u-image u-image-round u-radius-10 u-image-2" src="{% static 'SportsClubManagementApp/images/teamLogo.png'%}" alt="" data-image-width="1259" data-image-height="1280">
+      <h1 class="u-text u-title u-text-1">{{team1}} vs {{team2}} </h1>
+      <p class="u-large-text u-text u-text-variant u-text-2">come watch {{team1}} face off against {{team2}} on the {{date}} at the {{Stadium}}</p>
+    </section>
+    <section class="u-align-center u-clearfix u-grey-5 u-section-2" id="carousel_64dc">
+      <div class="u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+          <div class="u-container-style u-list-item u-repeater-item u-white u-list-item-1">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-1">
+              <div class="u-align-center u-container-style u-expanded-width u-group u-palette-5-dark-2 u-group-1">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <h3 class="u-custom-font u-font-raleway u-text u-text-1">Zone A</h3>
+                </div>
               </div>
-              </form>
+              <img alt="" class="u-expanded-width u-image u-image-default u-image-1" src="{% static 'SportsClubManagementApp/images/Stadium.jpg'%}" data-image-width="750" data-image-height="549">
+              <div class="u-container-style u-expanded-width u-group u-group-2">
+                <div class="u-container-layout u-container-layout-3">
+                  <p class="u-align-center u-text u-text-2">{{priceA}}$</p>
+                  {% if user is not None%}
+                  <a href="buyA" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                  {% else %}
+                  <a href="fan_login" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-2">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-4">
+              <div class="u-align-center u-container-style u-expanded-width u-group u-palette-4-base u-video-cover u-group-3">
+                <div class="u-container-layout u-valign-middle u-container-layout-5">
+                  <h3 class="u-custom-font u-font-raleway u-text u-text-3">Zone B</h3>
+                </div>
+              </div>
+              <img alt="" class="u-expanded-width u-image u-image-default u-image-2" src="{% static 'SportsClubManagementApp/images/Stadium.jpg'%}" data-image-width="750" data-image-height="549">
+              <div class="u-container-style u-expanded-width u-group u-video-cover u-group-4">
+                <div class="u-container-layout u-container-layout-6">
+                  <p class="u-align-center u-text u-text-default u-text-4">{{priceB}}$</p>
+                  {% if user is not None%}
+                  <a href="buyB" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                  {% else %}
+                  <a href="fan_login" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3">
+            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-7">
+              <div class="u-align-center u-container-style u-expanded-width u-group u-palette-5-dark-2 u-video-cover u-group-5">
+                <div class="u-container-layout u-valign-middle u-container-layout-8">
+                  <h3 class="u-custom-font u-font-raleway u-text u-text-5">Zone C</h3>
+                </div>
+              </div>
+              <img alt="" class="u-expanded-width u-image u-image-default u-image-3" src="{% static 'SportsClubManagementApp/images/Stadium.jpg'%}" data-image-width="750" data-image-height="549">
+              <div class="u-container-style u-expanded-width u-group u-video-cover u-group-6">
+                <div class="u-container-layout u-container-layout-9">
+                  <p class="u-align-center u-text u-text-default u-text-6">{{priceC}}$</p>
+                  {% if user is not None%}
+                  <a href="buyC" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                  {% else %}
+                  <a href="fan_login" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

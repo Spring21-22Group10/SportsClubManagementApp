@@ -2,17 +2,35 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .forms import CreateForm,FindForm,ForgotForm,ResetForm
-from .models import Player,Fan, Staff
+from .models import Player,Fan,Staff,Match
 from django.contrib import messages
 from django.core.mail import send_mail
+import datetime
 
 
 def index(request):
 	request.session['user'] = None
+	request.session['buying'] = None
 	return render(request,'index.html')
 
 def home_main(request):
 	return render(request,'HOME.html',)
+
+def home_staff(request):
+	return render(request,'HOME_Staff.html',)
+
+def report(request):
+	user = request.session['user']
+	return render(request,'Report.html',{ 'user':user })
+
+def buyA(request):
+	return render(request,'HOME.html')
+
+def buyB(request):
+	return render(request,'HOME.html')
+
+def buyC(request):
+	return render(request,'HOME.html')
 
 def news(request):
 	user = request.session['user']
@@ -24,6 +42,19 @@ def report(request):
 	
 def home_staff(request):
 	return render(request,'HOME_Staff.html')
+
+def tickets(request):
+	request.session['buying'] = True
+	match = Match.objects.order_by('date').first()
+	user = request.session['user']
+	team1 = match.team1
+	team2 = match.team2
+	date = match.date
+	Stadium = match.location
+	priceA = match.priceA
+	priceB = match.priceB
+	priceC = match.priceC
+	return render(request,'Tickets.html',{ 'user':user, 'team1':team1, 'team2':team2, 'date':date,'Stadium':Stadium, 'priceA':priceA,'priceB':priceB,'priceC':priceC })
 
 def player_login(request):
 	if request.method == 'POST':
@@ -98,6 +129,8 @@ def fan_login(request):
 				if e.username==username and e.password==password:
 					A=e
 					request.session['user'] = A.username
+					if request.session['buying'] is not None:
+						return tickets(request)
 					return render(request, 'HOME.html', { 'user': A.username })
 		form = FindForm()
 		message = "Incorrect User Name or Password"

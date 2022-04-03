@@ -34,5 +34,9 @@ urlpatterns = [
     url(r'^home_main',views.home_main),
     url(r'^home_staff',views.home_staff),
     url(r'^news',views.news),
+    url(r'^tickets',views.tickets),
+    url(r'^buyA',views.buyA),
+    url(r'^buyC',views.buyB),
+    url(r'^buyB',views.buyC),
     url(r'^Report',views.report),
 ]
