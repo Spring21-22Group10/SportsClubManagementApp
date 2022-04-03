@@ -13,8 +13,11 @@ def index(request):
 	request.session['buying'] = None
 	return render(request,'index.html')
 
-def home(request):
+def home_main(request):
 	return render(request,'HOME.html',)
+
+def home_staff(request):
+	return render(request,'HOME_Staff.html',)
 
 def buyA(request):
 	return render(request,'HOME.html')
