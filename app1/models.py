@@ -1,3 +1,5 @@
+from asyncio import constants
+from tokenize import ContStr
 from django.db import models
 
 # Create your models here.
@@ -65,3 +67,40 @@ class Revenue(models.Model):
     ticket_name = models.CharField(max_length=30)
     ticket_date = models.CharField(max_length=30)
     ticket_price = models.CharField(max_length=30)
+
+choicesMonth = [
+    ('January', 'January'),
+    ('February',"Fenruary"),
+    ('March',"March"),
+    ('April',"April"),
+    ('May',"May"),
+    ('June',"June"),
+    ('July','July'),
+    ('August','August'),
+    ('September','September'),
+    ('October','October'),
+    ('November','November'),
+    ('December','December')
+]
+
+
+
+class Report(models.Model):
+    id = models.IntegerField(primary_key=True)
+    Month = models.CharField(max_length=30,choices= choicesMonth)
+    Name = models.CharField(max_length=30)
+    Department = models.CharField(max_length=30)
+    Email = models.CharField(max_length=30)
+    Revenue= models.BooleanField(max_length=30)
+    Expenses = models.BooleanField(max_length=30)
+    Customer_Purchases = models.BooleanField(max_length=30)
+    Development_Cost = models.BooleanField(max_length=30)
+    Calculated_Difference = models.BooleanField(max_length=30)
+
+class News(models.Model):
+    id = models.IntegerField(primary_key=True)
+    news_title = models.CharField(max_length=100)
+    news_main= models.CharField(max_length=500)
+    news_date = models.DateField(null=True)
+    news_image = models.ImageField(upload_to= 'news')
+    news_number=models.IntegerField()

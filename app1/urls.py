@@ -39,5 +39,6 @@ urlpatterns = [
     url(r'^buyC',views.buyB),
     url(r'^buyB',views.buyC),
     url(r'^Report',views.report),
-    url(r'^record_expense',views.record_expense)
+    url(r'^matches',views.matches),
+    url(r'^record_expense',views.record_expense),
 ]

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .forms import CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm
-from .models import Player,Fan,Staff,Match, Expenses
+from .forms import CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm, ReportForm
+from .models import Player,Fan,Staff,Match, Expenses, Revenue, News
 from django.contrib import messages
 from django.core.mail import send_mail
 import datetime
@@ -10,6 +10,7 @@ import datetime
 
 def index(request):
 	request.session['user'] = None
+	request.session['match'] = None
 	request.session['buying'] = None
 	return render(request,'index.html')
 
@@ -24,7 +25,10 @@ def report(request):
 	return render(request,'Report.html',{ 'user':user })
 
 def buyA(request):
-	return render(request,'HOME.html')
+	user = request.session['user']
+	match = request.session['match']
+	name = 'Tickets A'
+	return render(request,'buy.html',{ 'name':name, 'price':match })
 
 def buyB(request):
 	return render(request,'HOME.html')
@@ -33,15 +37,18 @@ def buyC(request):
 	return render(request,'HOME.html')
 
 def news(request):
+	news = News.objects.order_by('news_date').all()
 	user = request.session['user']
-	return render(request,'News.html',{ 'user':user })
+	return render(request,'News.html',{ 'user':user, 'news':news})#, 'news_main':news_main, 'news_date':news_date, 'news_iamge':news_image, 'news_number':news_number })
 
 def report(request):
+	if request.method =='POST':
+		form=ReportForm(request.POST)
+		
+
 	user = request.session['user']
-	return render(request,'Report.html',{ 'user':user })
-	
-def home_staff(request):
-	return render(request,'HOME_Staff.html')
+	form = ReportForm()
+	return render(request,'Report.html',{'form': form,'user':user })
 
 def record_expense(request):
 	if request.method == 'POST':
@@ -63,9 +70,25 @@ def record_expense(request):
 	S = Expenses.objects.all()
 	return render(request, 'Expenses.html', {'form': form,'S':S})
 
+def generate_report(request):
+	data_exp=Expenses.objects.all()
+	data_rev=Revenue.objects.all()
+	
+def home_staff(request):
+	return render(request,'HOME_Staff.html')
+
+def matches(request):
+	user = request.session['user']
+	return render(request,'Matches.html',{ 'user':user })
+
 def tickets(request):
 	request.session['buying'] = True
-	match = Match.objects.order_by('date').first()
+	match = None
+	if request.session['match'] is None:
+		match = Match.objects.order_by('date').first()
+		request.session['match'] = match.priceA
+	else:
+		match = request.session['match']
 	user = request.session['user']
 	team1 = match.team1
 	team2 = match.team2
