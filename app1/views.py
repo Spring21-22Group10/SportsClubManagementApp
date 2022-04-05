@@ -26,9 +26,9 @@ def report(request):
 
 def buyA(request):
 	user = request.session['user']
-	match = request.session['match']
+	match = Match.objects.get(id = request.session['match'])
 	name = 'Tickets A'
-	return render(request,'buy.html',{ 'name':name, 'price':match })
+	return render(request,'buy.html',{ 'name':name, 'price':match.priceA })
 
 def buyB(request):
 	return render(request,'HOME.html')
@@ -86,9 +86,9 @@ def tickets(request):
 	match = None
 	if request.session['match'] is None:
 		match = Match.objects.order_by('date').first()
-		request.session['match'] = match.priceA
+		request.session['match'] = match.id
 	else:
-		match = request.session['match']
+		match = Match.objects.get(id = request.session['match'])
 	user = request.session['user']
 	team1 = match.team1
 	team2 = match.team2
