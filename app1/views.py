@@ -73,7 +73,7 @@ def make_table(department, month):
 	total2 = int(df2_temp2["ticket_price"].astype(int).sum(axis=0))
 	df2 = pd.concat([df2_temp,df2_temp2],axis=1)
 	df2.rename(columns={"merch_name":"Merch Name", "merch_price":"Merch Price","merch_date": "Merch Date","ticket_name":"Ticket Name", "ticket_price":"Ticket Price","ticket_date": "Ticket Date"},inplace=True)
-	df = pd.concat([df1,df2],axis=1)
+	df = pd.concat([df1.reset_index(drop=True), df2.reset_index(drop=True)],axis=1)
 	df.to_csv("report.csv",index=False)
 	totalRevenue = total1 + total2
 	totalExpenses = total0
