@@ -62,7 +62,7 @@ class Expenses(models.Model):
 
 class Revenue(models.Model):
     id = models.IntegerField(primary_key=True)
-    department_name = models.CharField(max_length=30,default="hi")
+    department_name = models.CharField(max_length=30)
     merch_name = models.CharField(max_length=30)
     merch_date = models.CharField(max_length=30)
     merch_price = models.CharField(max_length=30)
