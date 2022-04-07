@@ -1,0 +1,4 @@
+EMAIL_HOST=smtp.gmail.com
+EMAIL_HOST_USER=EECE430Spring2022@gmail.com
+EMAIL_HOST_PASSWORD=1234Eece
+RECIPIENT_ADDRESS=obazarbachi@gmail.com

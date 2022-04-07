@@ -41,4 +41,5 @@ urlpatterns = [
     url(r'^Report',views.report),
     url(r'^matches',views.matches),
     url(r'^record_expense',views.record_expense),
+    url(r'^merchandise', views.merchandise),
 ]

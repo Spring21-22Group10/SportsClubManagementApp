@@ -41,6 +41,10 @@ def news(request):
 	user = request.session['user']
 	return render(request,'News.html',{ 'user':user, 'news':news})#, 'news_main':news_main, 'news_date':news_date, 'news_iamge':news_image, 'news_number':news_number })
 
+##merchandise page
+def merchandise(request):
+	return render(request,'Merchandise.html')
+
 def report(request):
 	if request.method =='POST':
 		form=ReportForm(request.POST)
