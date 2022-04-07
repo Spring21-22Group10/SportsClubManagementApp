@@ -1,5 +1,6 @@
 from asyncio import constants
 from tokenize import ContStr
+from unittest.mock import DEFAULT
 from django.db import models
 
 # Create your models here.
@@ -61,6 +62,7 @@ class Expenses(models.Model):
 
 class Revenue(models.Model):
     id = models.IntegerField(primary_key=True)
+    department_name = models.CharField(max_length=30,default="hi")
     merch_name = models.CharField(max_length=30)
     merch_date = models.CharField(max_length=30)
     merch_price = models.CharField(max_length=30)
@@ -70,7 +72,7 @@ class Revenue(models.Model):
 
 choicesMonth = [
     ('January', 'January'),
-    ('February',"Fenruary"),
+    ('February',"February"),
     ('March',"March"),
     ('April',"April"),
     ('May',"May"),
@@ -91,12 +93,7 @@ class Report(models.Model):
     Name = models.CharField(max_length=30)
     Department = models.CharField(max_length=30)
     Email = models.CharField(max_length=30)
-    Revenue= models.BooleanField(max_length=30)
-    Expenses = models.BooleanField(max_length=30)
-    Customer_Purchases = models.BooleanField(max_length=30)
-    Development_Cost = models.BooleanField(max_length=30)
-    Calculated_Difference = models.BooleanField(max_length=30)
-
+    
 class News(models.Model):
     id = models.IntegerField(primary_key=True)
     news_title = models.CharField(max_length=100)

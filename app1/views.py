@@ -1,11 +1,29 @@
+from tkinter import CENTER
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from .forms import CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm, ReportForm
-from .models import Player,Fan,Staff,Match, Expenses, Revenue, News
+from .models import Player,Fan,Staff,Match, Expenses, Revenue, News, Report
 from django.contrib import messages
 from django.core.mail import send_mail
-import datetime
+from django.http import FileResponse
+from reportlab.platypus import Table, Frame, Paragraph, Spacer, SimpleDocTemplate, TableStyle
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
+import pandas as pd
+from datetime import date, datetime
+import pytz
+import csv
+from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.lib.units import cm, inch
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.platypus import *
+from reportlab.lib.styles import getSampleStyleSheet
 
 
 def index(request):
@@ -19,10 +37,7 @@ def home_main(request):
 
 def home_staff(request):
 	return render(request,'HOME_Staff.html',)
-
-def report(request):
-	user = request.session['user']
-	return render(request,'Report.html',{ 'user':user })
+	
 
 def buyA(request):
 	user = request.session['user']
@@ -41,14 +56,152 @@ def news(request):
 	user = request.session['user']
 	return render(request,'News.html',{ 'user':user, 'news':news})#, 'news_main':news_main, 'news_date':news_date, 'news_iamge':news_image, 'news_number':news_number })
 
-def report(request):
-	if request.method =='POST':
-		form=ReportForm(request.POST)
+def make_table(department, month):
+	df1 = pd.DataFrame(Expenses.objects.all().values()) 
+	df2 = pd.DataFrame(Revenue.objects.all().values())
+	df1 = df1[df1["department_name"] == department] 
+	df2 = df2[df2["department_name"] == department]
+	df1 = df1[["expense_date","department_expense","expense_name"]]
+	df1 = df1[df1["expense_date"].str.contains(month)]
+	df1.rename(columns={"expense_name":"Expense Name", "department_expense":"Expense Amount","expense_date": "Expense Date"},inplace=True)
+	total0 = int(df1["Expense Amount"].sum(axis=0))
+	df2_temp = df2[["merch_name", "merch_date","merch_price"]]
+	df2_temp2 = df2[["ticket_name", "ticket_date","ticket_price"]]
+	df2_temp = df2_temp[df2_temp["merch_date"].str.contains(month)]
+	df2_temp2 = df2_temp2[df2_temp2["ticket_date"].str.contains(month)]
+	total1 = int(df2_temp["merch_price"].astype(int).sum(axis=0))
+	total2 = int(df2_temp2["ticket_price"].astype(int).sum(axis=0))
+	df2 = pd.concat([df2_temp,df2_temp2],axis=1)
+	df2.rename(columns={"merch_name":"Merch Name", "merch_price":"Merch Price","merch_date": "Merch Date","ticket_name":"Ticket Name", "ticket_price":"Ticket Price","ticket_date": "Ticket Date"},inplace=True)
+	df = pd.concat([df1,df2],axis=1)
+	df.to_csv("report.csv",index=False)
+	totalRevenue = total1 + total2
+	totalExpenses = total0
+	return {"OverallExpenses": totalExpenses,"OverallRevenue": totalRevenue}
+
 		
 
-	user = request.session['user']
+
+def report(request):
+	if request.method == 'POST':
+		form = ReportForm(request.POST)
+		if form.is_valid():
+			reportForm = form.cleaned_data
+			month = reportForm['Month']
+			name = reportForm['Name']
+			department = reportForm['Department']
+			email = reportForm['Email']
+			doc = SimpleDocTemplate(month + " report for " + department + ".pdf",pagesize=(1000,1000),
+                            rightMargin=72,leftMargin=72,
+                            topMargin=72,bottomMargin=18)
+			Story=[]
+			styles=getSampleStyleSheet()
+			styles.add(ParagraphStyle(name='Center', alignment=TA_CENTER, fontSize=20))
+			ptext = month + " Report for " + department
+			Story.append(Paragraph(ptext, styles["Center"]))
+			Story.append(Spacer(60, 60))
+			tz_BEY = pytz.timezone('Asia/Beirut') 
+			datetime_BEY = datetime.now(tz_BEY)
+			Date = date(day=datetime_BEY.day, month=datetime_BEY.month, year=datetime_BEY.year).strftime('%A %d %B %Y')
+			styles=getSampleStyleSheet()
+			styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY,fontSize=16))
+			ptext = '%s' % Date
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(40, 40))
+			ptext = 'Department of %s' % department
+			Story.append(Paragraph(ptext, styles["Justify"]))         
+			Story.append(Spacer(40, 40))
+			ptext = 'This report comprises of the revenues and expenses for the department of %s:' % department
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(50, 50))
+			info = make_table(department,month)
+			totalExpenses = info["OverallExpenses"]
+			totalRevenue = info["OverallRevenue"]
+			with open('report.csv', "r") as csvfile:
+				data = list(csv.reader(csvfile))
+			all_cells = [(0, 0), (-1, -1)]
+			header = [(0, 0), (-1, 0)]
+			column0 = [(0, 0), (0, -1)]
+			column1 = [(1, 0), (1, -1)]
+			column2 = [(2, 0), (2, -1)]
+			column3 = [(3, 0), (3, -1)]
+			column4 = [(4, 0), (4, -1)]
+			column5 = [(5, 0), (5, -1)]
+			column6 = [(6, 0), (6, -1)]
+			column7 = [(7, 0), (7, -1)]
+			column8 = [(8, 0), (8, -1)]
+			column9 = [(9, 0), (9, -1)]
+			column10 = [(10, 0), (10, -1)]
+			table_style = TableStyle([
+				('VALIGN', all_cells[0], all_cells[1], 'TOP'),
+				('LINEBELOW', header[0], header[1], 1, colors.black),
+				('INNERGRID', (0,0), (-1,-1), 1, colors.black),
+				('ALIGN', column0[0], column0[1], 'CENTER'),
+				('ALIGN', column1[0], column1[1], 'CENTER'),
+				('ALIGN', column2[0], column2[1], 'CENTER'),
+				('ALIGN', column3[0], column3[1], 'CENTER'),
+				('ALIGN', column4[0], column4[1], 'CENTER'),
+				('ALIGN', column5[0], column5[1], 'CENTER'),
+				('ALIGN', column6[0], column6[1], 'CENTER'),
+				('ALIGN', column7[0], column7[1], 'CENTER'),
+				('ALIGN', column8[0], column8[1], 'CENTER'),
+				('ALIGN', column9[0], column9[1], 'CENTER'),
+				('ALIGN', column10[0], column10[1], 'CENTER'),
+				('fontSize', column0[0], column0[1], 14),
+				('fontSize', column1[0], column1[1], 14),
+				('fontSize', column2[0], column2[1], 14),
+				('fontSize', column3[0], column3[1], 14),
+				('fontSize', column4[0], column4[1], 14),
+				('fontSize', column5[0], column5[1], 14),
+				('fontSize', column6[0], column6[1], 14),
+				('fontSize', column7[0], column7[1], 14),
+				('fontSize', column8[0], column8[1], 14),
+				('fontSize', column9[0], column9[1], 14),
+				('fontSize', column10[0], column10[1], 14),
+			])
+
+			colWidths = [
+				3.5 * cm,  # Column 0
+				3.5 * cm,  # Column 1
+				3.5 * cm,  # Column 2
+				3.5 * cm,  # Column 3
+				3.5 * cm,  # Column 4
+				3.5 * cm,  # Column 5
+				3.5 * cm,  # Column 6
+				3.5 * cm,  # Column 7
+				3.5 * cm,  # Column 8
+				3.5 * cm,  # Column 9
+				3.5 * cm,  # Column 10
+			]
+			t = Table(data, colWidths=colWidths)
+			t.setStyle(table_style)
+			Story.append(t)
+			Story.append(Spacer(40, 40))
+			ptext =  'Overall Revenue made: ' + str(totalRevenue)
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(40, 40))
+			ptext =  'Overall Expenses cost: ' + str(totalExpenses)
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(40, 40))
+			ptext =  'Calculated difference (profit): ' + str(totalRevenue - totalExpenses)
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(40, 40))
+			ptext =  'This report was issued by %s' % name
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(40, 40))
+			ptext =  'Email: %s' % email
+			Story.append(Paragraph(ptext, styles["Justify"]))
+			Story.append(Spacer(40, 40))
+			doc.build(Story)
+			next_id = 1
+			if(Report.objects.all()):
+				next_id = Report.objects.last().id + 1
+			Report.objects.create(id=next_id,Month=month,Name=name,Department=department,Email = email)
+			return FileResponse(open(month + " report for " + department + ".pdf", 'rb'), content_type='application/pdf',as_attachment=True)
 	form = ReportForm()
-	return render(request,'Report.html',{'form': form,'user':user })
+	S = Report.objects.all()
+	return render(request, 'Report.html', {'form': form,'S':S})
+
 
 def record_expense(request):
 	if request.method == 'POST':
@@ -70,9 +223,6 @@ def record_expense(request):
 	S = Expenses.objects.all()
 	return render(request, 'Expenses.html', {'form': form,'S':S})
 
-def generate_report(request):
-	data_exp=Expenses.objects.all()
-	data_rev=Revenue.objects.all()
 	
 def home_staff(request):
 	return render(request,'HOME_Staff.html')
