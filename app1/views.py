@@ -64,7 +64,7 @@ def make_table(department, month):
 	df1 = df1[["expense_date","department_expense","expense_name"]]
 	df1 = df1[df1["expense_date"].str.contains(month)]
 	df1.rename(columns={"expense_name":"Expense Name", "department_expense":"Expense Amount","expense_date": "Expense Date"},inplace=True)
-	total0 = int(df1["Expense Amount"].sum(axis=0))
+	total0 = int(df1["Expense Amount"].astype(int).sum(axis=0))
 	df2_temp = df2[["merch_name", "merch_date","merch_price"]]
 	df2_temp2 = df2[["ticket_name", "ticket_date","ticket_price"]]
 	df2_temp = df2_temp[df2_temp["merch_date"].str.contains(month)]
