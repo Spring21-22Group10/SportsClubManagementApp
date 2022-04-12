@@ -1,4 +1,5 @@
-.u-section-1 .u-sheet-1 {
+.u-section-1 {
+  background-image: linear-gradient(#f2f2f2, #4c7397);
   min-height: 500px;
 }
 
@@ -20,7 +21,6 @@
 .u-section-1 .u-image-1 {
   width: 107px;
   height: 107px;
-  background-image: url("images/barcelonaBadge.png");
   background-position: 50% 50%;
   margin: 10px auto 0 79px;
 }
@@ -28,7 +28,6 @@
 .u-section-1 .u-image-2 {
   width: 107px;
   height: 107px;
-  background-image: url("images/realMadridBadge.png");
   background-position: 50% 50%;
   margin: -107px auto 0 693px;
 }

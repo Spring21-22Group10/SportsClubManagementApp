@@ -1,5 +1,4 @@
  .u-section-1 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("images/af6aedf43610879d93b8badc74ee43b152f1f86d10dc41cdadf6faf5609a4ff1f40698e1689cf0ce1929261fe8440f250e5c68f4eef2455dd06c5f_1280.jpg");
   background-position: 50% 50%;
   min-height: 429px;
 }
@@ -124,7 +123,7 @@
     margin-right: calc(((100% - 1140px) / 2) + 400px);
   }
 } .u-section-2 {
-  background-image: none;
+  background-image: linear-gradient(#f2f2f2, #4c7397);
   min-height: 863px;
 }
 

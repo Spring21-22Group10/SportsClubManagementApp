@@ -72,10 +72,19 @@
                 </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
-              <a style="padding: 28px 300px;"></a>
-              <div class="dropdown"> <a href="index">Log out</a> </div>
+              {% if user is not None%}
+              <a style="padding: 28px 180px;"></a>
+              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
+              {% else %}
+              <a style="padding: 28px 220px;"></a>
+              <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
+                <div class="dropdown-content"> <a href="player_login">Player</a> <a href="fan_login">Fan</a> <a
+                    href="staff_login">Staff</a> </div>
+              </div>
+              {% endif %}
             </div>
             <div class="u-custom-menu u-nav-container-collapse">
               <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -90,7 +99,8 @@
                         style="padding: 28px 30px;">Tickets</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise">Merchandise</a>
+</li>
                   </ul>
                 </div>
               </div>

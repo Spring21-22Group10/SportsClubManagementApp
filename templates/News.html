@@ -73,13 +73,14 @@
                 </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
               {% if user is not None%}
-              <a style="padding: 28px 300px;"></a>
-              <div class="dropdown"> <a href="index">Log out</a> </div>
+              <a style="padding: 28px 180px;"></a>
+              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
               {% else %}
-              <a style="padding: 28px 300px;"></a>
+              <a style="padding: 28px 220px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
                 <div class="dropdown-content"> <a href="player_login">Player</a> <a href="fan_login">Fan</a> <a
                     href="staff_login">Staff</a> </div>
@@ -99,7 +100,8 @@
                         style="padding: 28px 30px;">Tickets</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise">Merchandise</a>
+</li>
                   </ul>
                 </div>
               </div>
@@ -123,7 +125,7 @@
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <a href="News-Subpage.html" data-page-id="2045176"
                 class="u-active-none u-border-2 u-border-palette-1-base u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-btn-rectangle u-button-style u-hover-none u-none u-radius-0 u-top-left-radius-0 u-top-right-radius-0 u-btn-1">{{article.news_title}}</a>
-              <img class="u-expanded-width u-image u-image-default u-image-1" src="{{article.news_image}}" alt=""
+              <img class="u-expanded-width u-image u-image-default u-image-1" src="{{article.news_image.url}}" alt=""
                 data-image-width="400" data-image-height="265">
             </div>
           </div>

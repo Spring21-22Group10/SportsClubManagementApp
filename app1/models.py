@@ -6,7 +6,7 @@ from django.db import models
 
 
 class Player(models.Model):
-    id= models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=30)
     username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=30)
@@ -44,7 +44,9 @@ class Reset(models.Model):
 class Match(models.Model):
     id = models.IntegerField(primary_key=True)
     team1 = models.CharField(max_length=30)
+    team1_logo = models.ImageField(null=True,blank=True,upload_to='matches')
     team2 = models.CharField(max_length=30)
+    team2_logo = models.ImageField(null=True,blank=True,upload_to='matches')
     location = models.CharField(max_length=30)
     date = models.DateField()
     priceA = models.IntegerField()
@@ -100,7 +102,40 @@ class Report(models.Model):
 class News(models.Model):
     id = models.IntegerField(primary_key=True)
     news_title = models.CharField(max_length=100)
-    news_main= models.CharField(max_length=500)
+    news_main = models.CharField(max_length=500)
     news_date = models.DateField(null=True)
-    news_image = models.ImageField(upload_to= 'news')
-    news_number=models.IntegerField()
+    news_image = models.ImageField(null=True,blank=True,upload_to='news')
+    news_number = models.IntegerField()
+
+class Cart(models.Model):
+    id = models.IntegerField(primary_key=True)
+    user_id = models.IntegerField()
+    item = models.CharField(max_length=30,unique=True)
+    price = models.IntegerField()
+    amount = models.IntegerField()
+
+class Price(models.Model):
+    id = models.IntegerField(primary_key=True)
+
+class CreditCard(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=30)
+    card_number = models.IntegerField()
+    experation_date = models.CharField(max_length=5)
+    CCV = models.IntegerField()
+
+class Merchandise(models.Model):
+    id = models.IntegerField(primary_key=True)
+    item_name = models.CharField(max_length=30)
+    price = models.IntegerField()
+    news_image = models.ImageField(upload_to= 'merch')
+
+class Purchases(models.Model):
+    id = models.IntegerField(primary_key=True)
+    user_id = models.IntegerField()
+    item = models.CharField(max_length=30)
+    price = models.IntegerField()
+    amount = models.IntegerField()
+
+
+

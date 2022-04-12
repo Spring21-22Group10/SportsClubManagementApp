@@ -1,47 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
-
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>Buy</title>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css'>
-  <link rel='stylesheet'
-    href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Raleway:300,400,600&amp;subset=latin-ext'>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-  <link rel='stylesheet'
-    href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css'>
-  <link rel="stylesheet" href="{% static 'SportsClubManagementApp/buy.css'%}">
-  <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css' %}" media="screen">
-  <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js' %}"
-    defer=""></script>
-  <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js' %}"
-    defer=""></script>
-  <meta name="generator" content="Nicepage 4.6.5, nicepage.com">
-  <link id="u-theme-google-font" rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-
-  <script type="application/ld+json">{
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Merchandise</title>
+    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css'%}" media="screen">
+<link rel="stylesheet" href="{% static 'SportsClubManagementApp/Merchandise.css'%}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js'%}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js'%}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "Organization",
     "name": "Site1",
     "logo": "{% static 'SportsClubManagementApp/images/default-logo.png'%}",
     "sameAs": []
 }</script>
-  <meta name="theme-color" content="#478ac9">
-  <meta property="og:title" content="Buy">
-  <meta property="og:description" content="">
-  <meta property="og:type" content="website">
-
-</head>
-
-<body class="u-xl-mode">
-  <header class=" u-clearfix u-header u-section-row-container u-body" id="sec-cb7a" >
-    <div class="u-section-rows" >
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Merchandise">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode">
+  <header class=" u-clearfix u-header u-section-row-container" id="sec-cb7a">
+    <div class="u-section-rows">
       <div class="u-clearfix u-palette-1-base u-section-row u-sticky u-sticky-fcf0 u-section-row-1"
         data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""
         id="sec-3c7e">
@@ -85,7 +74,7 @@
               <a style="padding: 28px 180px;"></a>
               <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
               {% else %}
-              <a style="padding: 28px 180px;"></a>
+              <a style="padding: 28px 220px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
                 <div class="dropdown-content"> <a href="player_login">Player</a> <a href="fan_login">Fan</a> <a
                     href="staff_login">Staff</a> </div>
@@ -112,114 +101,39 @@
               </div>
               <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
-          </nav>
-          {% if user is not None%}
-          <a href="home_main" class="u-image u-logo u-image-1">
-            <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}"
-              class="u-logo-image u-logo-image-1">
-          </a>
-          {% else %}
-          <a href="index" class="u-image u-logo u-image-1">
-            <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}"
-              class="u-logo-image u-logo-image-1">
-          </a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </header>
-  <section class="u-clearfix u-section-1" id="sec-f0ac">
-  <div class="container-fluid background">
-    <div class="row padding-top-20">
-      <div
-        class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-8 offset-md-1 offset-lg-1 offset-xl-2 padding-horizontal-40">
-        <div class="row">
-          <div class="col-12 main-wrapper">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <div id="template" class="row panel-wrapper">
-                  <div class="col-12 panel-header basket-header">
-                    <div class="row">
-                      <div class="col-6 basket-title">
-                        <span class="description">review your</span><br><span class="emphasized">Cart Summary</span>
-                      </div>
-                      <div class="col-6 order-number align-right">
-                        <span class="description">order #</span><br><span class="emphasized">{{order_number}}</span>
-                      </div>
-                    </div>
-                    <div class="row column-titles padding-top-10">
-                      <div class="col-2 align-center"><span>Photo</span></div>
-                      <div class="col-5 align-center"><span>Name</span></div>
-                      <div class="col-2 align-center"><span>Quantity</span></div>
-                      <div class="col-3 align-right"><span>Price</span></div>
-                    </div>
-                  </div>
-                  <div class="col-12 panel-body basket-body" style="font-size: 3em;">
-                    {% for product in cart %}
-                    <div class="row product">
-                      <div class="col-3">{{product.item}}<br></div>
-                      <div class="col-5 align-right">
-                        <a href="{% url 'remove' product.id %}">-</a>
-                        {{product.amount}}
-                        <a href="{% url 'add' product.id %}">+</a>
-                      </div>
-                      <div class="col-4 align-right">{{product.price}}$</div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                  <div class="col-12 panel-footer basket-footer">
-                    <hr>
-                    <div class="row">
-                      <div class="col-8 align-right description">
-                        <div class="dive">Total</div>
-                      </div>
-                      <div class="col-4 align-right"><span class="emphasized">{{total}}$</span></div>
-                      <div class="col-8 align-right description">
-                      </div>
-                    </div>
-                    <hr>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="row panel-wrapper">
-                  <div class="col-12 panel-header creditcard-header">
-                    <div class="row">
-                      <div class="col-12 creditcard-title">
-                        <span class="description">please enter your</span><br><span class="emphasized">Credit Card
-                          Information</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 panel-body creditcard-body" style="font-size: 1.1em;">
-                    <form action="#" method="POST"
-                      class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom"
-                      name="form-2" style="padding: 10px;">
-                      <div class="u-form-group u-form-name">
-                        {% csrf_token %}
-                        {{ form }}
-                      </div>
-                        <div class="u-align-center u-form-group u-form-submit">
-                          <input type="submit" value="submit" class="u-form-control-hidden">
-                        </div>
-                  </div>
-                  <div class="col-12 panel-footer creditcard-footer">
-                    <div class="row">
-                      <div class="col-12 align-right"><a class="u-align-center" style="font-size: 1.8em;">{{message}} </a><button class="confirm">Confirm & Pay</button></div>
-                    </div>
-                  </div>
-                  </form>
-                </div>
+      </nav><a href="home_main" data-page-id="85594514" class="u-image u-logo u-image-1" title="HOME">
+        <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
+      </a></header>
+    <section class="u-align-center u-clearfix u-section-1" id="carousel_2e01">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h3 class="u-text u-text-1">
+          <br>Buy Our Club Merchandise!
+        </h3>
+        <p class="u-align-left u-text u-text-2">&nbsp; &nbsp; Support your favorite teams and players! </p>
+        <div class="u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            {% for i in merch %}
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+                <img src="{% static 'SportsClubManagementApp/images/FullSet.png'%}" alt="" class="u-expanded-width u-image u-image-default u-image-1" data-image-width="225" data-image-height="225">
+                {% if user is not None%}
+                <div><a href="{% url 'item' i.id %}" class="u-text u-text-4">{{i.item_name}}</a>{{i.price}}$</div>
+                {% else %}
+                <div><a href="fan_login" class="u-text u-text-4">{{i.item_name}}</a>{{i.price}}$</div>
+                {% endif %}
               </div>
             </div>
+            {% endfor %}
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  </section>
-
-  <footer class="u-clearfix u-footer u-grey-80 u-footer" id="sec-c461">
+    </section>
+    <style class="u-overlap-style">.u-overlap:not(.u-sticky-scroll) .u-header {
+background-color: #b9c1cc !important
+}</style>
+    
+    
+    <footer class="u-clearfix u-footer u-grey-80 u-footer" id="sec-c461">
     <div class="u-gallery u-layout-grid u-lightbox u-no-transition u-show-text-none u-gallery-1">
       <div class="u-gallery-inner u-gallery-inner-1">
         <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name=""
@@ -312,15 +226,16 @@
       </a>
     </div>
   </footer>
-  <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js'></script>
-  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js'></script>
-  <script
-    src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js'></script>
-
-</body>
-
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="" target="_blank">
+        <span>Website Builder Software</span>
+      </a>. 
+    </section>
+  </body>
 </html>
