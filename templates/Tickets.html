@@ -66,22 +66,25 @@
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
-                </li><li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="matches" style="padding: 28px 30px;">Matches</a>
-                </li><li class="u-nav-item"><a
+                </li><li class="u-nav-item">
+                                    <div class="dropdown"> <a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="matches" style="padding: 28px 30px;">Matches</a>
+                                        <div class="dropdown-content"> <a href="matches">upcoming matches</a> <a href="past_matches">Past Matches</a> <a href="leagues">leagues</a> </div>
+                                    </div>
+                                </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="tickets" style="padding: 28px 30px;">Tickets</a>
                 </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="stream" style="padding: 28px 30px;">Stream</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
               {% if user is not None%}
-              <a style="padding: 28px 300px;"></a>
-              <div class="dropdown"> <a href="index">Log out</a> </div>
+              <a style="padding: 28px 180px;"></a>
+              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
               {% else %}
-              <a style="padding: 28px 300px;"></a>
+              <a style="padding: 28px 220px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
                 <div class="dropdown-content"> <a href="player_login">Player</a> <a href="fan_login">Fan</a> <a
                     href="staff_login">Staff</a> </div>
@@ -101,7 +104,8 @@
                         style="padding: 28px 30px;">Tickets</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise">Merchandise</a>
+</li>
                   </ul>
                 </div>
               </div>
@@ -123,13 +127,13 @@
       </div>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="150"
-    data-image-height="83" id="sec-0f58">
+  <section class="u-align-center u-clearfix u-image u-shading u-section-1" data-image-width="150"
+    data-image-height="83" id="sec-0f58" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url({% static 'SportsClubManagementApp/images/af6aedf43610879d93b8badc74ee43b152f1f86d10dc41cdadf6faf5609a4ff1f40698e1689cf0ce1929261fe8440f250e5c68f4eef2455dd06c5f_1280.jpg'%});">
     <img class="u-image u-image-round u-radius-10 u-image-1"
-      src="{% static 'SportsClubManagementApp/images/teamLogo.png'%}" alt="" data-image-width="1259"
+      src="{{team1_logo.url}}" alt="" data-image-width="1259"
       data-image-height="1280">
     <img class="u-image u-image-round u-radius-10 u-image-2"
-      src="{% static 'SportsClubManagementApp/images/teamLogo.png'%}" alt="" data-image-width="1259"
+      src="{{team2_logo.url}}" alt="" data-image-width="1259"
       data-image-height="1280">
     <h1 class="u-text u-title u-text-1">{{team1}} vs {{team2}} </h1>
     <p class="u-large-text u-text u-text-variant u-text-2">come watch {{team1}} face off against {{team2}} on the
@@ -152,7 +156,17 @@
               <div class="u-container-layout u-container-layout-3">
                 <p class="u-align-center u-text u-text-2">{{priceA}}$</p>
                 {% if user is not None%}
-                <a href="buyA" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                <div class="u-expanded-width u-form u-login-control u-form-1">
+                  <form action="#" method="POST" source="custom" name="form-2" style="padding: 10px;">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="hidden" name="price" value="{{priceA}}">
+                    <div class="u-align-center u-form-group u-form-submit">
+                      <a href="#" class="u-align-center u-btn u-btn-rectangle u-btn-submit u-button-style u-palette-4-base u-btn-1">Buy</a>
+                      <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                  </form>
+                </div>
                 {% else %}
                 <a href="fan_login" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
                 {% endif %}
@@ -175,7 +189,17 @@
               <div class="u-container-layout u-container-layout-6">
                 <p class="u-align-center u-text u-text-default u-text-4">{{priceB}}$</p>
                 {% if user is not None%}
-                <a href="buyB" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                <div class="u-expanded-width u-form u-login-control u-form-1">
+                  <form action="#" method="POST" source="custom" name="form-2" style="padding: 10px;">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="hidden" name="price" value="{{priceB}}">
+                    <div class="u-align-center u-form-group u-form-submit">
+                      <a href="#" class="u-align-center u-btn u-btn-rectangle u-btn-submit u-button-style u-palette-4-base u-btn-1">Buy</a>
+                      <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                  </form>
+                </div>
                 {% else %}
                 <a href="fan_login" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
                 {% endif %}
@@ -198,7 +222,17 @@
               <div class="u-container-layout u-container-layout-9">
                 <p class="u-align-center u-text u-text-default u-text-6">{{priceC}}$</p>
                 {% if user is not None%}
-                <a href="buyC" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
+                <div class="u-expanded-width u-form u-login-control u-form-1">
+                  <form action="#" method="POST" source="custom" name="form-2" style="padding: 10px;">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="hidden" name="price" value="{{priceC}}">
+                    <div class="u-align-center u-form-group u-form-submit">
+                      <a href="#" class="u-align-center u-btn u-btn-rectangle u-btn-submit u-button-style u-palette-4-base u-btn-1">Buy</a>
+                      <input type="submit" value="submit" class="u-form-control-hidden">
+                    </div>
+                  </form>
+                </div>
                 {% else %}
                 <a href="fan_login" class="u-btn u-btn-rectangle u-button-style u-palette-4-base u-btn-1">Buy</a>
                 {% endif %}

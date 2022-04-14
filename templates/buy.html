@@ -65,26 +65,29 @@
               </a>
             </div>
             <div class="u-custom-menu u-nav-container">
-              <ul class="u-nav u-spacing-1 u-unstyled u-nav-3" >
+              <ul class="u-nav u-spacing-1 u-unstyled u-nav-3">
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
-                </li><li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="matches" style="padding: 28px 30px;">Matches</a>
-                </li><li class="u-nav-item"><a
+                </li><li class="u-nav-item">
+                                    <div class="dropdown"> <a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="matches" style="padding: 28px 30px;">Matches</a>
+                                        <div class="dropdown-content"> <a href="matches">upcoming matches</a> <a href="past_matches">Past Matches</a> <a href="leagues">leagues</a> </div>
+                                    </div>
+                                </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="tickets" style="padding: 28px 30px;">Tickets</a>
                 </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="stream" style="padding: 28px 30px;">Stream</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
               {% if user is not None%}
-              <a style="padding: 28px 300px;"></a>
-              <div class="dropdown"> <a href="index">Log out</a> </div>
+              <a style="padding: 28px 180px;"></a>
+              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
               {% else %}
-              <a style="padding: 28px 300px;"></a>
+              <a style="padding: 28px 180px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
                 <div class="dropdown-content"> <a href="player_login">Player</a> <a href="fan_login">Fan</a> <a
                     href="staff_login">Staff</a> </div>
@@ -104,7 +107,8 @@
                         style="padding: 28px 30px;">Tickets</a>
                     </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li>
+                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise">Merchandise</a>
+</li>
                   </ul>
                 </div>
               </div>
@@ -153,31 +157,29 @@
                     </div>
                   </div>
                   <div class="col-12 panel-body basket-body" style="font-size: 3em;">
+                    {% for product in cart %}
                     <div class="row product">
-                      <div class="">{{name}}<br></div>
-                      <div class="col-5 align-right">1</div>
-                      <div class="col-3 align-right">{{price}}$</div>
+                      <div class="col-3">{{product.item}}<br></div>
+                      <div class="col-5 align-right">
+                        <a href="{% url 'remove' product.id %}">-</a>
+                        {{product.amount}}
+                        <a href="{% url 'add' product.id %}">+</a>
+                      </div>
+                      <div class="col-4 align-right">{{product.price}}$</div>
                     </div>
+                    {% endfor %}
                   </div>
                   <div class="col-12 panel-footer basket-footer">
                     <hr>
                     <div class="row">
                       <div class="col-8 align-right description">
-                        <div class="dive">Subtotal</div>
-                      </div>
-                      <div class="col-4 align-right"><span class="emphasized">{{price}}$</span></div>
-                      <div class="col-8 align-right description">
-                        <div class="dive">Taxes</div>
-                      </div>
-                      <div class="col-4 align-right"><span class="emphasized">{{price}}$</span></div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-8 align-right description">
                         <div class="dive">Total</div>
                       </div>
-                      <div class="col-4 align-right"><span class="very emphasized">{{price}}$</span></div>
+                      <div class="col-4 align-right"><span class="emphasized">{{total}}$</span></div>
+                      <div class="col-8 align-right description">
+                      </div>
                     </div>
+                    <hr>
                   </div>
                 </div>
               </div>
@@ -192,37 +194,23 @@
                     </div>
                   </div>
                   <div class="col-12 panel-body creditcard-body" style="font-size: 1.1em;">
-                    <form action="#" method="post" target="_self">
-                      <fieldset>
-                        <label for="card-name">Name on the Card</label><br>
-                        <i class="fa fa-user-o" aria-hidden="true"></i><input type='text' id='card-name'
-                          name='card-name' placeholder='John Doe' title='Name on the Card'>
-                      </fieldset>
-                      <fieldset>
-                        <label for="card-number">Card Number</label><br>
-                        <i class="fa fa-credit-card" aria-hidden="true"></i><input type='text' id='card-number'
-                          name='card-number' placeholder='1234 5678 9123 4567' title='Card Number'>
-                      </fieldset>
-                      <fieldset>
-                        <label for="card-expiration">Expiration Date</label><br>
-                        <i class="fa fa-calendar" aria-hidden="true"></i><input type='text' id='card-expiration'
-                          name='card-expiration' placeholder='YY/MM' title='Expiration' class="card-expiration">
-                      </fieldset>
-                      <fieldset>
-                        <label for="card-ccv">CVC/CCV</label>&nbsp;<i class="fa fa-info-circle" aria-hidden="true"
-                          data-toggle="tooltip" data-placement="right"
-                          title="The CVV Number on your credit card or debit card is a 3 digit number on VISA, MasterCard and Discover branded credit and debit cards. On your American Express branded credit or debit card it is a 4 digit numeric code."></i><br>
-                        <i class="fa fa-lock" aria-hidden="true"></i><input type='text' id='card-ccv' name='card-ccv'
-                          placeholder='123' title='CVC/CCV'>
-                      </fieldset>
-                    </form>
+                    <form action="#" method="POST"
+                      class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom"
+                      name="form-2" style="padding: 10px;">
+                      <div class="u-form-group u-form-name">
+                        {% csrf_token %}
+                        {{ form }}
+                      </div>
+                        <div class="u-align-center u-form-group u-form-submit">
+                          <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
                   </div>
                   <div class="col-12 panel-footer creditcard-footer">
                     <div class="row">
-                      <div class="col-12 align-right"><button class="cancel">Cancel</button>&nbsp;<button
-                          class="confirm">Confirm & Pay</button></div>
+                      <div class="col-12 align-right"><a class="u-align-center" style="font-size: 1.8em;">{{message}} </a><button class="confirm">Confirm & Pay</button></div>
                     </div>
                   </div>
+                  </form>
                 </div>
               </div>
             </div>

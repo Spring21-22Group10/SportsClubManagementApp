@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.urls import path
 #from django.conf.urls import url
 from . import views
 
@@ -41,4 +42,13 @@ urlpatterns = [
     url(r'^Report',views.report),
     url(r'^matches',views.matches),
     url(r'^record_expense',views.record_expense),
+    path('remove(<int:id>)',views.remove, name='remove'),
+    path('add(<int:id>)',views.add, name='add'),
+    url(r'^merchandise',views.merch),
+    path('item(<int:id>)', views.item, name='item'),
+    path('ticket(<int:id>)', views.ticket, name='ticket'),
+    url(r'^past_matches',views.past_matches),
+    url(r'^stream',views.stream),
+    url(r'^leagues',views.leagues),
+    path('video(<int:pk>)', views.stream_detail, name='stream_detail'),
 ]
