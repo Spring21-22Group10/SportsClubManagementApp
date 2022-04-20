@@ -54,6 +54,13 @@ class Match(models.Model):
     priceA = models.IntegerField()
     priceB = models.IntegerField()
     priceC = models.IntegerField()
+    streaming_title = models.CharField(max_length=200,default="foo")
+    streaming_body = models.TextField(default="foo")
+    streaming_video = EmbedVideoField(default="foo")
+    class  Meta:
+        verbose_name_plural = "Match"
+    def  __str__(self):
+        return  str(self.streaming_title) if  self.streaming_title  else  " "
 
 class Expenses(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -123,10 +130,10 @@ class CreditCard(models.Model):
     CCV = models.IntegerField()
 
 class Merchandise(models.Model):
-    id = models.IntegerField(primary_key=True)
-    item_name = models.CharField(max_length=30)
-    price = models.IntegerField()
-    news_image = models.ImageField(upload_to= 'merch')
+    id = models.IntegerField(primary_key=True,default="foo")
+    item_name = models.CharField(max_length=30,default="foo")
+    price = models.IntegerField(default="foo")
+    item_image = models.ImageField(upload_to= 'merch',default="foo")
 
 class Purchases(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -135,12 +142,17 @@ class Purchases(models.Model):
     price = models.IntegerField()
     amount = models.IntegerField()
 
-class  Streaming(models.Model):
-	streaming_title = models.CharField(max_length=200)
-	streaming_body = models.TextField()
-	streaming_video = EmbedVideoField()
-	class  Meta:
-		verbose_name_plural = "Streaming"
-	def  __str__(self):
-		return  str(self.streaming_title) if  self.streaming_title  else  " "
+
+class LeaguesMen(models.Model):
+    id = models.IntegerField(primary_key=True)
+    team_name= models.CharField(max_length=100)
+    points=models.IntegerField()
+    rank = models.IntegerField()
+
+class LeaguesWomen(models.Model):
+    id = models.IntegerField(primary_key=True)
+    team_name= models.CharField(max_length=100)
+    points=models.IntegerField()
+    rank = models.IntegerField()
+
 

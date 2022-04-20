@@ -66,15 +66,17 @@
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
-                </li><li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="matches" style="padding: 28px 30px;">Matches</a>
-                </li><li class="u-nav-item"><a
+                </li><li class="u-nav-item">
+                                    <div class="dropdown"> <a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="matches" style="padding: 28px 30px;">Matches</a>
+                                        <div class="dropdown-content"> <a href="matches">upcoming matches</a> <a href="past_matches">Past Matches</a> <a href="leagues">leagues</a> </div>
+                                    </div>
+                                </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="tickets" style="padding: 28px 30px;">Tickets</a>
                 </li><li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="stream" style="padding: 28px 30px;">Stream</a>
                 </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
@@ -128,10 +130,10 @@
   <section class="u-align-center u-clearfix u-image u-shading u-section-1" data-image-width="150"
     data-image-height="83" id="sec-0f58" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url({% static 'SportsClubManagementApp/images/af6aedf43610879d93b8badc74ee43b152f1f86d10dc41cdadf6faf5609a4ff1f40698e1689cf0ce1929261fe8440f250e5c68f4eef2455dd06c5f_1280.jpg'%});">
     <img class="u-image u-image-round u-radius-10 u-image-1"
-      src="{{team1_logo.url}}" alt="" data-image-width="1259"
+      src="{{team2_logo.url}}" alt="" data-image-width="1259"
       data-image-height="1280">
     <img class="u-image u-image-round u-radius-10 u-image-2"
-      src="{{team2_logo.url}}" alt="" data-image-width="1259"
+      src="{{team1_logo.url}}" alt="" data-image-width="1259"
       data-image-height="1280">
     <h1 class="u-text u-title u-text-1">{{team1}} vs {{team2}} </h1>
     <p class="u-large-text u-text u-text-variant u-text-2">come watch {{team1}} face off against {{team2}} on the

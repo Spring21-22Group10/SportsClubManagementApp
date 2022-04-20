@@ -20,6 +20,7 @@ from . import views
 
 
 urlpatterns = [
+    url(r'^expenses',views.expenses),
     url(r'^$',views.index),
     url(r'^index',views.index),
     url(r'^player_login',views.player_login),
@@ -37,8 +38,6 @@ urlpatterns = [
     url(r'^news',views.news),
     url(r'^tickets',views.tickets),
     url(r'^buyA',views.buyA),
-    url(r'^buyC',views.buyB),
-    url(r'^buyB',views.buyC),
     url(r'^Report',views.report),
     url(r'^matches',views.matches),
     url(r'^record_expense',views.record_expense),
@@ -48,6 +47,14 @@ urlpatterns = [
     path('item(<int:id>)', views.item, name='item'),
     path('ticket(<int:id>)', views.ticket, name='ticket'),
     url(r'^past_matches',views.past_matches),
-    url(r'^stream',views.stream),
+    url(r'^leagues',views.leagues),
+    url(r'^addmatch',views.addmatch),
+    url(r'^addmerch',views.addmerch),
+    path('deletematch(<int:id>,<int:type>)', views.deletematch, name='deletematch'),
+    path('editmatch(<int:id>,<int:type>)', views.editmatch, name='editmatch'),
+    path('deletemerch(<int:id>)', views.deletemerch, name='deletemerch'),
+    path('editmerch(<int:id>)', views.editmerch, name='editmerch'),
     path('video(<int:pk>)', views.stream_detail, name='stream_detail'),
+    path('edit_expense(<int:id>)', views.edit_expense, name='edit_expense'),
+    path('delete_expense(<int:id>)', views.delete_expense, name='delete_expense'),
 ]

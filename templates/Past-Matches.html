@@ -55,16 +55,23 @@
                         </div>
                         <div class="u-custom-menu u-nav-container">
                             <ul class="u-nav u-spacing-1 u-unstyled u-nav-3">
-                                <li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="news" style="padding: 28px 30px;">News</a>
-                                </li><li class="u-nav-item">
+                <li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="news" style="padding: 28px 30px;">News</a>
+                </li><li class="u-nav-item">
                                     <div class="dropdown"> <a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="matches" style="padding: 28px 30px;">Matches</a>
                                         <div class="dropdown-content"> <a href="matches">upcoming matches</a> <a href="past_matches">Past Matches</a> <a href="leagues">leagues</a> </div>
                                     </div>
-                                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="tickets" style="padding: 28px 30px;">Tickets</a>
-                                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="teams" style="padding: 28px 30px;">Teams</a>
-                                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
-                                </li>
-                            </ul>
+                                </li><li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="tickets" style="padding: 28px 30px;">Tickets</a>
+                </li><li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="teams" style="padding: 28px 30px;">Teams</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="stream" style="padding: 28px 30px;">Stream</a>
+                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
+                </li>
+              </ul>
                             {% if user is not None%}
                             <a style="padding: 28px 180px;"></a>
                             <div class="dropdown"> <a href="buyA">Cart</a>
@@ -107,23 +114,29 @@
         </div>
     </header>
     <section class="u-clearfix u-section-1" id="sec-f0ac">
+        {% if staff is not None%}
+        <a href="addmatch" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">add</a>
+        {% endif %}
         <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-expanded-width u-list u-list-1">
                 <div class="u-repeater u-repeater-1">
-                    {% for item in match %}
+                     {% for item in match %}
                     <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-container-layout-1">
-                            <div class="u-image u-image-circle u-preserve-proportions u-image-1" alt="" data-image-width="1400" data-image-height="980" style="background-image: url({{item.team1_logo.url}});"></div>
-                            <div class="u-image u-image-circle u-preserve-proportions u-image-2" alt="" data-image-width="313" data-image-height="161" style="background-image: url({{item.team2_logo.url}});"></div>
-                            <h3 class="u-text u-text-default u-text-1">{{item.team1}}</h3>
-                            <h3 class="u-text u-text-default u-text-2">{{item.score}}</h3>
-                            <h3 class="u-text u-text-default u-text-3">{{item.team2}}</h3>
-                            <a href="Tickets" data-page-id="568401855" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Re-Watch<br>
-                </a>
-                            <h3 class="u-text u-text-default u-text-4" style="color: gray;">{{item.date}}</h3>
-                            <h3 class="u-text u-text-default u-text-5" style="color: gray;">{{item.location}}</h3>
+                            <img class="u-image u-image-circle u-preserve-proportions u-image-1" src="{{item.team1_logo.url}}" alt="" data-image-width="1259" data-image-height="1280">
+                            <img class="u-image u-image-circle u-preserve-proportions u-image-2" src="{{item.team2_logo.url}}" alt="" data-image-width="1259" data-image-height="1280">
+                            <h1 class="u-text u-text-1">{{item.team1}} vs {{item.team2}} </h1>
+                            <p class=" u-text u-text-variant u-text-2">{{item.date}} {{item.location}}</p>
+                            {% if staff is not None%}
+                            <a href="{% url 'editmatch' item.id 0%}" data-page-id="568401855" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">edit</a>
+                            <a href="{% url 'deletematch' item.id 0%}" data-page-id="568401855" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Delete</a>
+                            {% else %}
+                            <a href="{% url 'stream_detail' item.id %}" data-page-id="568401855" class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">Re-watch<br>
+                            </a>
+                            {% endif %}
                         </div>
                     </div>
+                    <a style="padding: 20px;"></a>
                     {% endfor %}
                 </div>
             </div>

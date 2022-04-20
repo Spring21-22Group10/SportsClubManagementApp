@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue, Report, Cart, Price, CreditCard, choicesMonth
+from .models import Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue, Report, Cart, Price, CreditCard, choicesMonth, Match, Merchandise
 from django import forms
 
 # Create the form class.
@@ -86,5 +86,30 @@ class CreditCardForm(ModelForm):
 		}
 
 
+class AddMatch(ModelForm):
+	class Meta:
+		model = Match
+		fields = ['team1','team1_logo', 'team2','team2_logo','location','date','priceA','priceB','priceC']
+		widgets = {
+			'team1' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team 1 Name",  'style':'padding: 10px 10px 10px 10px'}),
+			'team1_logo' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+			'team2' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team 2 Name",  'style':'padding: 10px 10px 10px 10px'}),
+			'team2_logo' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+			'date' : forms.DateInput(format='%d-%m-%Y',attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
+			'location' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Match Location",  'style':'padding: 10px 10px 10px 10px'}),
+			'priceA' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone A",  'style':'padding: 10px 10px 10px 10px'}),
+			'priceB' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone B",  'style':'padding: 10px 10px 10px 10px'}),
+			'priceC' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone C",  'style':'padding: 10px 10px 10px 10px'}),
+		}
+
+class AddMerchandise(ModelForm):
+	class Meta:
+		model = Merchandise
+		fields = ['item_name','price','item_image']
+		widgets = {
+			'item_name' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Item Name",  'style':'padding: 10px 10px 10px 10px'}),
+			'price' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Item Price",  'style':'padding: 10px 10px 10px 10px'}),
+			'item_image' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+		}
 
 
