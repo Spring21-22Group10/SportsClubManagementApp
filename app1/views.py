@@ -444,6 +444,41 @@ def past_matches(request):
 	match = Match.objects.all().filter(date__range=["1800-01-01", today])
 	return render(request,'Past-Matches.html',{ 'user':user, 'match':match, 'staff':staff })
 
+def schedule(request):
+	D={"01":"January", "02":"February","03":"March","04":"April","05":"May",
+	"06":"June","07":"July","08":"August","09":"September","10":"October","11":"November","12":"December"}
+	user = request.session['user']
+	staff = request.session['staff']
+	today=date.today()
+	today = datetime.strptime(str(today), '%Y-%m-%d')
+	today=str(today)
+	month= today[5:7]
+	year=today[0:4]
+	month_year=today[0:7]
+	days_of_month={"01":1, "02":-1,"03":1,"04":0,"05":1,"06":0,"07":1,"08":1,"09":0,"10":1,"11":0,"12":1}
+	L=[]
+	n=28
+	if days_of_month[month]==1:
+		n=31
+	elif days_of_month[month]==0:
+		n=30
+	for i in range(1,n+1):
+			if i<10:
+				L.append(year+"-"+month+"-"+"0"+str(i))
+			else:
+				L.append(year+"-"+month+"-"+str(i))
+	month=D[month]
+	match = Match.objects.all().filter(date__range=["1800-01-01", "3000-01-01"])
+	match_list=[]
+	for item in match:
+		item.date=str(item.date)
+		match_list.append(item.date)
+	return render(request,'Schedule.html',{ 'user':user, 'match':match,"Month":month,'n':n,'L':L, 'match_list':match_list, 'staff':staff })
+
+
+
+
+
 def tickets(request):
 	user = request.session['user']
 	if request.method == 'POST':

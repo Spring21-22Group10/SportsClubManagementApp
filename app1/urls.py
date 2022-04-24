@@ -55,4 +55,5 @@ urlpatterns = [
     path('deletemerch(<int:id>)', views.deletemerch, name='deletemerch'),
     path('editmerch(<int:id>)', views.editmerch, name='editmerch'),
     path('video(<int:pk>)', views.stream_detail, name='stream_detail'),
+    url(r'^schedule',views.schedule),
 ]
