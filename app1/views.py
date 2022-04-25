@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .forms import CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm, ReportForm, GetPrice, CreditCardForm, AddMatch, AddMerchandise, AddNews
-from .models import Player, Fan, Staff, Match, Expenses, Revenue, News, Cart, Price, CreditCard, Merchandise, Purchases, Report, LeaguesMen, LeaguesWomen
+from .forms import AddMenLeague, AddNews, AddWomenLeague, CreatePlayerForm,CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm, ReportForm, GetPrice, CreditCardForm, AddMatch, AddMerchandise, AddNews
+from .models import Player, Fan, Staff,Team, Match, Expenses, Revenue, News, Cart, Price, CreditCard, Merchandise, Purchases, Report, LeaguesMen, LeaguesWomen
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import FileResponse
@@ -60,6 +60,85 @@ def leagues(request):
 	user = request.session['user']
 	staff = request.session['staff']
 	return render(request, 'leagues.html', {'user':user, 'staff':staff,'leaguemen':leaguemen, 'leaguewomen':leaguewomen})
+
+def teams(request):
+	staff = request.session['staff']
+	user = request.session['user']
+	playerMenForward = Team.objects.all().filter(gender="Male",position="Forward")
+	playerMenDefender = Team.objects.all().filter(gender="Male",position="Defender")
+	playerMenGoalkeeper = Team.objects.all().filter(gender="Male",position="Goalkeeper")
+	playerMenMidfielder = Team.objects.all().filter(gender="Male",position="Midfielder")
+	playerWomenForward = Team.objects.all().filter(gender="Female",position="Forward")
+	playerWomenDefender = Team.objects.all().filter(gender="Female",position="Defender")
+	playerWomenGoalkeeper = Team.objects.all().filter(gender="Female",position="Goalkeeper")
+	playerWomenMidfielder = Team.objects.all().filter(gender="Female",position="Midfielder")
+	playerOtherForward = Team.objects.all().filter(gender="Other",position="Forward")
+	playerOtherDefender = Team.objects.all().filter(gender="Other",position="Defender")
+	playerOtherGoalkeeper = Team.objects.all().filter(gender="Other",position="Goalkeeper")
+	playerOtherMidfielder = Team.objects.all().filter(gender="Other",position="Midfielder")
+	return render(request, 'teams.html', { "user":user,"staff":staff, "playerMenForward":playerMenForward, "playerMenDefender": playerMenDefender,
+	"playerMenGoalkeeper":playerMenGoalkeeper,"playerMenMidfielder":playerMenMidfielder, "playerWomenForward":playerWomenForward,
+	"playerWomenDefender": playerWomenDefender, "playerWomenGoalkeeper": playerWomenGoalkeeper,"playerWomenMidfielder": playerWomenMidfielder,
+	"playerOtherForward":playerOtherForward, "playerOtherDefender" : playerOtherDefender, "playerOtherGoalkeeper": playerOtherGoalkeeper,
+	"playerOtherMidfielder":playerOtherMidfielder})
+	
+def team(request,id):
+	user = request.session['user']
+	team = Player.objects.all().filter(id=id).first()
+	return render(request,'home.html')
+
+def delete_team(request,id):
+	Team.objects.all().filter(id=id).first().delete()
+	return HttpResponseRedirect('teams')\
+
+def add_team(request):
+	if request.method == 'POST':
+		form = AddTeam(request.POST, request.FILES)
+		if form.is_valid():
+			Teamform = form.cleaned_data
+			name = Teamform['name']
+			gender = Teamform['gender']
+			position = Teamform['position']
+			try:
+				player = Player.objects.get(name=name,gender=gender,position=position)
+			except Player.DoesNotExist:
+				player = None
+			if(player):
+				next_id = 1
+				if(Team.objects.all()):
+					next_id = Team.objects.last().id + 1
+				Team.objects.create(id=next_id,name=name,gender=gender,position=position,photo=player.photo)
+				return HttpResponseRedirect('teams')
+			else:
+				form = AddTeam()
+				message = "Player does not exist!"
+				return render(request, 'Add-Team.html', {'form': form, "message": message})
+		return render(request, 'Add-Team.html', {'form': form})
+	form = AddTeam()
+	return render(request,'Add-Team.html',{'form':form})
+
+def edit_team(request,id):
+	if request.method == 'POST':
+		form = AddMerchandise(request.POST, request.FILES)
+		if form.is_valid():
+			Teamform = form.cleaned_data
+			name = Teamform['name']
+			gender = Teamform['gender']
+			position = Teamform['position']
+			photo = Teamform['photo']
+			for e in Team.objects.all():
+				if e.id==id:
+					e.gender = gender
+					e.name = name
+					e.position = position
+					e.photo = photo
+					e.save()
+					return HttpResponseRedirect('teams')
+		form = AddTeam()
+		return render(request, 'Edit-Team.html', {'form': form})
+	form = AddTeam()
+	return render(request,'Edit-Team.html',{'form':form})
+
 
 def home_staff(request):
 	staff = request.session['staff']
@@ -143,6 +222,34 @@ def addmenleague(request):
 	form = AddMenLeague()
 	return render(request,'Add-League.html',{'form':form})
 
+def editmenleague(request,id):
+	if request.method == 'POST':
+		form = AddMenLeague(request.POST, request.FILES)
+		if form.is_valid():
+			Leagueform = form.cleaned_data
+			team_name = Leagueform['team_name']
+			points = Leagueform['points']
+			rank = Leagueform['rank']
+			
+			if points < 0 or rank<0 :
+				form = AddMenLeague()
+				message = "Invalid number"
+				return render(request, 'Edit-League.html', {'form': form, 'message':message})
+			next_id = 1
+			if(LeaguesMen.objects.all()):
+				next_id = LeaguesMen.objects.last().id + 1
+			for e in LeaguesMen.objects.all():
+				if e.id==id:
+					e.team_name = team_name
+					e.points = points
+					e.rank = rank
+					e.save()
+					return HttpResponseRedirect('leagues')
+		form = AddMenLeague()
+		return render(request, 'Edit-League.html', {'form': form})
+	form = AddMenLeague()
+	return render(request,'Edit-League.html',{'form':form})
+
 def addwomenleague(request):
 	if request.method == 'POST':
 		form = AddWomenLeague(request.POST, request.FILES)
@@ -165,6 +272,34 @@ def addwomenleague(request):
 		return render(request, 'Add-League.html', {'form': form})
 	form = AddWomenLeague()
 	return render(request,'Add-League.html',{'form':form})
+
+def editwomenleague(request,id):
+	if request.method == 'POST':
+		form = AddWomenLeague(request.POST, request.FILES)
+		if form.is_valid():
+			Leagueform = form.cleaned_data
+			team_name = Leagueform['team_name']
+			points = Leagueform['points']
+			rank = Leagueform['rank']
+			
+			if points < 0 or rank<0 :
+				form = AddWomenLeague()
+				message = "Invalid number"
+				return render(request, 'Edit-League.html', {'form': form, 'message':message})
+			next_id = 1
+			if(LeaguesWomen.objects.all()):
+				next_id = LeaguesWomen.objects.last().id + 1
+			for e in LeaguesWomen.objects.all():
+				if e.id==id:
+					e.team_name = team_name
+					e.points = points
+					e.rank = rank
+					e.save()
+					return HttpResponseRedirect('leagues')
+		form = AddWomenLeague()
+		return render(request, 'Edit-League.html', {'form': form})
+	form = AddWomenLeague()
+	return render(request,'Edit-League.html',{'form':form})
 
 def addmatch(request):
 	if request.method == 'POST':
@@ -290,11 +425,11 @@ def editnews(request,id):
 				return render(request, 'Add-News.html', {'form': form, 'message':message})
 			for e in News.objects.all():
 				if e.id==id:
-					e.news_title ='news_title'
-					e.news_main = 'news_main'
-					e.news_image = 'news_image'
-					e.news_date = 'news_date'
-					e.news_number = 'news_number'
+					e.news_title = news_title
+					e.news_main = news_main
+					e.news_image = news_image
+					e.news_date = news_date
+					e.news_number = news_number
 					e.save()
 					
 					return HttpResponseRedirect('news')
@@ -704,7 +839,7 @@ def player_login(request):
 
 def player_signup(request):
 	if request.method == 'POST':
-		form = CreateForm(request.POST)
+		form = CreatePlayerForm(request.POST)
 		print("test")
 		if form.is_valid():
 			print("test1")
@@ -725,7 +860,7 @@ def player_signup(request):
 					request.session['player'] = True
 					player = request.session['player']
 					return render(request, 'HOME.html', { 'user': A.username, 'player':player})
-	form = CreateForm()
+	form = CreatePlayerForm()
 	S = Player.objects.all()
 	return render(request, 'Player-Signup.html', {'form': form,'S':S})
 

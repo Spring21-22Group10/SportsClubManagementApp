@@ -7,6 +7,18 @@ from  embed_video.fields  import  EmbedVideoField
 # Create your models here.
 
 
+choicesGender = [
+    ('Male', 'Male'),
+    ('Female',"Female"),
+    ('Other',"Other")
+]
+choicesPosition = [
+    ('Goalkeeper', 'Goalkeeper'),
+    ('Defender',"Defender"),
+    ('Midfielder',"Midfielder"),
+    ('Forward',"Forward"),
+]
+
 class Player(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=30)
@@ -14,6 +26,16 @@ class Player(models.Model):
     password = models.CharField(max_length=30)
     confirm_password = models.CharField(max_length=30)
     email = models.CharField(max_length=30,unique=True)
+    gender = models.CharField(max_length=30,choices= choicesGender)
+    position = models.CharField(max_length=30,choices= choicesPosition)
+    photo = models.ImageField(null=True,blank=True,upload_to='teams')
+
+class Team(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=30)
+    gender = models.CharField(max_length=30,choices= choicesGender)
+    position = models.CharField(max_length=30,choices= choicesPosition)
+    photo = models.ImageField(null=True,blank=True,upload_to='teams')
 
 class Find(models.Model):
     username = models.CharField(max_length=30,unique=True)

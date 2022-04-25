@@ -1,8 +1,23 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue, Report, Cart, Price, CreditCard, choicesMonth, Match, Merchandise, News
+from .models import LeaguesMen, LeaguesWomen,Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue, Report, Cart, Price, CreditCard, choicesMonth, Match, Merchandise, News,Team, choicesPosition, choicesGender
 from django import forms
 
 # Create the form class.
+class CreatePlayerForm(ModelForm):
+	class Meta:
+		model = Player
+		fields = ['name','username', 'email', 'password', 'confirm_password', "gender", "position","photo"]
+		widgets ={
+			'name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
+			'username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name", 'style':'padding: 10px 10px 10px 10px'}),
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email", 'style':'padding: 10px 10px 10px 10px'}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
+			'confirm_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
+			'gender' : forms.Select(choices=choicesGender,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your gender",  'style':'padding: 10px 10px 10px 10px'}),
+			'position' : forms.Select(choices=choicesPosition,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your position",  'style':'padding: 10px 10px 10px 10px'}),
+			"photo" : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+		}
+
 class CreateForm(ModelForm):
 	class Meta:
 		model = Player
@@ -127,8 +142,30 @@ class AddNews(ModelForm):
 			'news_title' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter News Title",  'style':'padding: 10px 10px 10px 10px'}),
 			'news_main' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter News Main",  'style':'padding: 10px 10px 10px 10px'}),
 			'news_image' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
-			'news_date' : forms.DateInput(format='%d-%m-%Y',attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
+			'news_date' : forms.DateInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
 			'news_number' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter News number",  'style':'padding: 10px 10px 10px 10px'}),
+		}
+
+class AddMenLeague(ModelForm):
+	class Meta:
+		model = LeaguesMen
+		fields = ['team_name','points', 'rank']
+		widgets = {
+			'team_name' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team name",  'style':'padding: 10px 10px 10px 10px'}),
+			'points' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Points",  'style':'padding: 10px 10px 10px 10px'}),
+	
+			'rank' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Rank",  'style':'padding: 10px 10px 10px 10px'}),
+		}
+
+class AddWomenLeague(ModelForm):
+	class Meta:
+		model = LeaguesWomen
+		fields = ['team_name','points', 'rank']
+		widgets = {
+			'team_name' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team name",  'style':'padding: 10px 10px 10px 10px'}),
+			'points' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Points",  'style':'padding: 10px 10px 10px 10px'}),
+	
+			'rank' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Rank",  'style':'padding: 10px 10px 10px 10px'}),
 		}
 
 
