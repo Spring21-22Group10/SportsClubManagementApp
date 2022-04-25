@@ -1,5 +1,6 @@
-.u-section-1 .u-sheet-1 {
-  min-height: 500px;
+.u-section-1 {
+background-image: linear-gradient(#f2f2f2, #4c7397);
+  min-height: 900px;
 }
 
 .u-section-1 .u-list-1 {
@@ -18,50 +19,53 @@
 }
 
 .u-section-1 .u-image-1 {
+  align-self: center;
   width: 107px;
   height: 107px;
-  background-image: url("images/barcelonaBadge1.png");
   background-position: 50% 50%;
-  margin: 10px auto 0 79px;
+  margin: 10px auto 0 150px;
 }
 
 .u-section-1 .u-image-2 {
+  align-self: center; 
   width: 107px;
   height: 107px;
-  background-image: url("images/realMadridBadge1.png");
   background-position: 50% 50%;
-  margin: -107px auto 0 693px;
+  margin: -107px auto 0 850px;
 }
 
 .u-section-1 .u-text-1 {
-  margin: -82px auto 0 217px;
+  text-align: center;
+  margin: -82px auto 0 0;
 }
 
 .u-section-1 .u-text-2 {
-  margin: -36px auto 0 391px;
+  text-align: center;
+  margin: -5px auto 0 0;
 }
 
 .u-section-1 .u-text-3 {
-  margin: -36px auto 0 572px;
+  margin: -36px auto 0 auto;
 }
 
 .u-section-1 .u-btn-1 {
+  text-align: center;
   border-style: solid;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.875rem;
   letter-spacing: 1px;
-  margin: -36px auto 0 925px;
+  margin: 10px auto 0 auto;
 }
 
 .u-section-1 .u-text-4 {
   font-size: 1.25rem;
-  margin: -10px auto 0 417px;
+  margin: -10px auto 0 370px;
 }
 
 .u-section-1 .u-text-5 {
   font-size: 1.25rem;
-  margin: 11px auto 0 399px;
+  margin: 11px auto 0 370px;
 }
 
 .u-section-1 .u-container-layout-2 {
@@ -71,7 +75,6 @@
 .u-section-1 .u-image-3 {
   width: 107px;
   height: 107px;
-  background-image: url("images/barcelonaBadge1-12.png");
   background-position: 50% 50%;
   margin: 10px auto 0 79px;
 }
@@ -79,7 +82,6 @@
 .u-section-1 .u-image-4 {
   width: 107px;
   height: 107px;
-  background-image: url("images/realMadridBadge1-13.png");
   background-position: 50% 50%;
   margin: -107px auto 0 693px;
 }
@@ -122,7 +124,6 @@
 .u-section-1 .u-image-5 {
   width: 107px;
   height: 107px;
-  background-image: url("images/realMadridBadge1-14.png");
   background-position: 50% 50%;
   margin: 10px auto 0 79px;
 }
@@ -130,7 +131,6 @@
 .u-section-1 .u-image-6 {
   width: 107px;
   height: 107px;
-  background-image: url("images/barcelonaBadge1-15.png");
   background-position: 50% 50%;
   margin: -107px auto 0 693px;
 }

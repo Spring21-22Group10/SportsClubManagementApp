@@ -1,34 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Stream</title>
-    <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css'%}" media="screen">
-<link rel="stylesheet" href="{% static 'SportsClubManagementApp/stream.css'%}" media="screen">
-    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js'%}" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js'%}" defer=""></script>
-    <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-    
-    <script type="application/ld+json">{
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="page_type" content="np-template-header-footer-from-plugin">
+  <title>Stream</title>
+  <link rel="stylesheet" href="{% static 'SportsClubManagementApp/nicepage.css'%}" media="screen">
+  <link rel="stylesheet" href="{% static 'SportsClubManagementApp/stream.css'%}" media="screen">
+  <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/jquery.js'%}"
+    defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'SportsClubManagementApp/nicepage.js'%}"
+    defer=""></script>
+  <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+  <script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "Organization",
     "name": "Site1",
     "logo": "{% static 'SportsClubManagementApp/images/default-logo.png'%}",
     "sameAs": []
 }</script>
-    <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="stream">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-  </head>
-  <body class="u-body u-xl-mode">
+  <meta name="theme-color" content="#478ac9">
+  <meta property="og:title" content="stream">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+</head>
+
+<body class="u-body u-xl-mode">
   <header class=" u-clearfix u-header u-section-row-container" id="sec-cb7a">
     <div class="u-section-rows">
       <div class="u-clearfix u-palette-1-base u-section-row u-sticky u-sticky-fcf0 u-section-row-1"
@@ -58,24 +63,24 @@
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="matches" style="padding: 28px 30px;">Matches</a>
-                </li><li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="tickets" style="padding: 28px 30px;">Tickets</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="stream" style="padding: 28px 30px;">Stream</a>
-                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
+                    href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
               {% if user is not None%}
               <a style="padding: 28px 180px;"></a>
-              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
+              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log
+                  out</a> </div>
               {% else %}
               <a style="padding: 28px 220px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
@@ -91,43 +96,52 @@
                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="news"
                         style="padding: 28px 30px;">News</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="matches"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="matches"
                         style="padding: 28px 30px;">Matches</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets"
                         style="padding: 28px 30px;">Tickets</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="stream"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="stream"
                         style="padding: 28px 30px;">Stream</a>
                     </li>
-                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
-</li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise"
+                        style="padding: 28px 30px;">Merchandise</a>
+                    </li>
                   </ul>
                 </div>
               </div>
               <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
-      </nav><a href="home_main" data-page-id="85594514" class="u-image u-logo u-image-1" title="HOME">
-        <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}" class="u-logo-image u-logo-image-1">
-      </a></header>
-    <section class="u-align-center u-clearfix u-section-1" id="carousel_2e01">
+          </nav><a href="home_main" data-page-id="85594514" class="u-image u-logo u-image-1" title="HOME">
+            <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}"
+              class="u-logo-image u-logo-image-1">
+          </a>
+  </header>
+  <section class="u-align-center u-clearfix u-section-1" id="carousel_2e01">
 
-      <div  class="col-md-8 offset-md-2">
-        <h1>Watch Matches</h1>
-        <hr>
-        {% for s in stream %}
-        <h2><a  href="{% url 'stream_detail' s.pk %}">{{ s.streaming_title}}</a></h2>
-        <p>{{ s.streaming_body | slice:':400' }}...</p>
-        {% endfor %}
-      </div>
-    
-    </section>
-    <style class="u-overlap-style">.u-overlap:not(.u-sticky-scroll) .u-header {
-background-color: #b9c1cc !important
-}</style>
-    
-    
-    <footer class="u-clearfix u-footer u-grey-80 u-footer" id="sec-c461">
+    <div class="col-md-8 offset-md-2">
+      <h1>Watch Matches</h1>
+      <hr>
+      {% for s in stream %}
+      <h2><a href="{% url 'stream_detail' s.pk %}">{{ s.streaming_title}}</a></h2>
+      <p>{{ s.streaming_body | slice:':400' }}...</p>
+      {% endfor %}
+    </div>
+
+  </section>
+  <style class="u-overlap-style">
+    .u-overlap:not(.u-sticky-scroll) .u-header {
+      background-color: #b9c1cc !important
+    }
+  </style>
+
+
+  <footer class="u-clearfix u-footer u-grey-80 u-footer" id="sec-c461">
     <div class="u-gallery u-layout-grid u-lightbox u-no-transition u-show-text-none u-gallery-1">
       <div class="u-gallery-inner u-gallery-inner-1">
         <div class="u-effect-hover-zoom u-gallery-item u-shape-rectangle" data-animation-name=""
@@ -220,16 +234,17 @@ background-color: #b9c1cc !important
       </a>
     </div>
   </footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
-  </body>
+  <section class="u-backlink u-clearfix u-grey-80">
+    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+      <span>Website Templates</span>
+    </a>
+    <p class="u-text">
+      <span>created with</span>
+    </p>
+    <a class="u-link" href="" target="_blank">
+      <span>Website Builder Software</span>
+    </a>.
+  </section>
+</body>
+
 </html>

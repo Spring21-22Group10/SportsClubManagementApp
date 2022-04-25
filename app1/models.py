@@ -54,9 +54,12 @@ class Match(models.Model):
     priceA = models.IntegerField()
     priceB = models.IntegerField()
     priceC = models.IntegerField()
-    streaming_title = models.CharField(max_length=200,default="foo")
-    streaming_body = models.TextField(default="foo")
-    streaming_video = EmbedVideoField(default="foo")
+    num_ticketsA = models.IntegerField()
+    num_ticketsB = models.IntegerField()
+    num_ticketsC = models.IntegerField()
+    streaming_title = models.CharField(max_length=200)
+    streaming_body = models.TextField()
+    streaming_video = EmbedVideoField()
     class  Meta:
         verbose_name_plural = "Match"
     def  __str__(self):
@@ -130,10 +133,11 @@ class CreditCard(models.Model):
     CCV = models.IntegerField()
 
 class Merchandise(models.Model):
-    id = models.IntegerField(primary_key=True,default="foo")
-    item_name = models.CharField(max_length=30,default="foo")
-    price = models.IntegerField(default="foo")
-    item_image = models.ImageField(upload_to= 'merch',default="foo")
+    id = models.IntegerField(primary_key=True)
+    item_name = models.CharField(max_length=30)
+    price = models.IntegerField()
+    item_image = models.ImageField(upload_to= 'merch')
+    stock = models.IntegerField()
 
 class Purchases(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -141,7 +145,6 @@ class Purchases(models.Model):
     item = models.CharField(max_length=30)
     price = models.IntegerField()
     amount = models.IntegerField()
-
 
 class LeaguesMen(models.Model):
     id = models.IntegerField(primary_key=True)

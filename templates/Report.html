@@ -65,19 +65,20 @@
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="matches" style="padding: 28px 30px;">Matches</a>
-                </li><li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="tickets" style="padding: 28px 30px;">Tickets</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="record_expense" style="padding: 28px 30px;">Expenses</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="report" style="padding: 28px 30px;">Report</a>
                 </li>
@@ -100,15 +101,20 @@
                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="news"
                         style="padding: 28px 30px;">News</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="matches"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="matches"
                         style="padding: 28px 30px;">Matches</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets"
                         style="padding: 28px 30px;">Tickets</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="record_expense"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="record_expense"
                         style="padding: 28px 30px;">Expenses</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="report"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="report"
                         style="padding: 28px 30px;">Report</a>
                     </li>
                   </ul>
@@ -126,19 +132,23 @@
       <div class="u-container-layout u-container-layout-1">
         <h3 class="u-align-center u-text u-text-default u-text-1">Generate a report for your department</h3>
         <div class="u-expanded-width u-form u-login-control u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom" name="form-2" style="padding: 10px;">
+          <form action="#" method="POST"
+            class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom"
+            name="form-2" style="padding: 10px;">
             <div class="u-form-group u-form-name">
               {% csrf_token %}
-              {{ form }}      
+              {{ form }}
               <input type="hidden" name="form_type" value="form">
-            <div class="u-align-center u-form-group u-form-submit">
-              <a href="report" class="u-align-center u-btn u-btn-round u-btn-submit u-button-style u-radius-17 u-btn-1" >Generate report</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
-            </div>
-            </form>
-          </div>
-  </div>
-</section>
+              <div class="u-align-center u-form-group u-form-submit">
+                <a href="report"
+                  class="u-align-center u-btn u-btn-round u-btn-submit u-button-style u-radius-17 u-btn-1">Generate
+                  report</a>
+                <input type="submit" value="submit" class="u-form-control-hidden">
+              </div>
+          </form>
+        </div>
+      </div>
+  </section>
 
   <footer class="u-clearfix u-footer u-grey-80 u-footer" id="sec-c461">
     <div class="u-gallery u-layout-grid u-lightbox u-no-transition u-show-text-none u-gallery-1">
