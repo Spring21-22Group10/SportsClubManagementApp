@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .forms import AddMenLeague, AddNews, AddWomenLeague, CreatePlayerForm,CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm, ReportForm, GetPrice, CreditCardForm, AddMatch, AddMerchandise, AddNews
+from .forms import AddMenLeague, AddNews, AddWomenLeague, CreatePlayerForm,CreateForm,FindForm,ForgotForm,ResetForm, ExpenseForm, ReportForm, GetPrice, CreditCardForm, AddMatch, AddMerchandise, AddNews, AddTeam
 from .models import Player, Fan, Staff,Team, Match, Expenses, Revenue, News, Cart, Price, CreditCard, Merchandise, Purchases, Report, LeaguesMen, LeaguesWomen
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -36,8 +36,10 @@ def index(request):
 	request.session['match'] = None
 	request.session['buying'] = None
 	Cart.objects.all().delete()
+	player = request.session['player']
+	fan = request.session['fan']
 	news = News.objects.all()
-	return render(request,'index.html',{'news':news})
+	return render(request,'index.html', {'player':player, 'fan':fan, 'news1':news[0],'news2':news[1]})
 
 def home_main(request):
 	player = request.session['player']
@@ -55,7 +57,7 @@ def subpage(request,id):
 	return render(request,'News-Subpage.html',{ 'user':user, 'news':news, 'news_title':news_title, 'news_image':news_image, 'player':player, 'fan':fan})
 
 def leagues(request):
-	leaguemen = LeaguesMen.objects.all()
+	leaguemen = LeaguesMen.objects.all().order_by('rank')
 	leaguewomen = LeaguesWomen.objects.all()
 	user = request.session['user']
 	staff = request.session['staff']
@@ -64,6 +66,7 @@ def leagues(request):
 def teams(request):
 	staff = request.session['staff']
 	user = request.session['user']
+	player = request.session['player']
 	playerMenForward = Team.objects.all().filter(gender="Male",position="Forward")
 	playerMenDefender = Team.objects.all().filter(gender="Male",position="Defender")
 	playerMenGoalkeeper = Team.objects.all().filter(gender="Male",position="Goalkeeper")
@@ -80,12 +83,8 @@ def teams(request):
 	"playerMenGoalkeeper":playerMenGoalkeeper,"playerMenMidfielder":playerMenMidfielder, "playerWomenForward":playerWomenForward,
 	"playerWomenDefender": playerWomenDefender, "playerWomenGoalkeeper": playerWomenGoalkeeper,"playerWomenMidfielder": playerWomenMidfielder,
 	"playerOtherForward":playerOtherForward, "playerOtherDefender" : playerOtherDefender, "playerOtherGoalkeeper": playerOtherGoalkeeper,
-	"playerOtherMidfielder":playerOtherMidfielder})
+	"playerOtherMidfielder":playerOtherMidfielder, 'player':player})
 	
-def team(request,id):
-	user = request.session['user']
-	team = Player.objects.all().filter(id=id).first()
-	return render(request,'home.html')
 
 def delete_team(request,id):
 	Team.objects.all().filter(id=id).first().delete()
@@ -99,15 +98,19 @@ def add_team(request):
 			name = Teamform['name']
 			gender = Teamform['gender']
 			position = Teamform['position']
+			photo = Teamform['photo']
 			try:
-				player = Player.objects.get(name=name,gender=gender,position=position)
+				player = Player.objects.get(name=name)
 			except Player.DoesNotExist:
 				player = None
 			if(player):
 				next_id = 1
 				if(Team.objects.all()):
 					next_id = Team.objects.last().id + 1
-				Team.objects.create(id=next_id,name=name,gender=gender,position=position,photo=player.photo)
+				if photo is not None:
+					Team.objects.create(id=next_id,name=name,gender=gender,position=position,photo=photo)
+				else :
+					Team.objects.create(id=next_id,name=name,gender=gender,position=position,photo=player.photo)
 				return HttpResponseRedirect('teams')
 			else:
 				form = AddTeam()
@@ -119,7 +122,7 @@ def add_team(request):
 
 def edit_team(request,id):
 	if request.method == 'POST':
-		form = AddMerchandise(request.POST, request.FILES)
+		form = AddTeam(request.POST, request.FILES)
 		if form.is_valid():
 			Teamform = form.cleaned_data
 			name = Teamform['name']
@@ -131,7 +134,8 @@ def edit_team(request,id):
 					e.gender = gender
 					e.name = name
 					e.position = position
-					e.photo = photo
+					if photo is not None:
+						e.photo = photo
 					e.save()
 					return HttpResponseRedirect('teams')
 		form = AddTeam()
@@ -142,8 +146,15 @@ def edit_team(request,id):
 
 def home_staff(request):
 	staff = request.session['staff']
+	player = request.session['player']
+	fan = request.session['fan']
 	news = News.objects.all()
-	return render(request,'HOME_Staff.html', {'staff':staff, 'fan':fan})
+	return render(request,'HOME_Staff.html', {'player':player, 'fan':fan, 'news1':news[0],'news2':news[1]})
+
+def history(request):
+	user = request.session['user']
+	history = Purchases.objects.all().filter(user_id = user)
+	return render(request,'History.html',{'user':user,'history':history})
 
 def merch(request):
 	merch = Merchandise.objects.all()
@@ -312,6 +323,8 @@ def addmatch(request):
 			team2_logo = Matchform['team2_logo']
 			date = Matchform['date']
 			location = Matchform['location']
+			score_team1 = Matchform['score_team1']
+			score_team2 = Matchform['score_team2']
 			priceA = Matchform['priceA']
 			priceB = Matchform['priceB']
 			priceC = Matchform['priceC']
@@ -325,7 +338,7 @@ def addmatch(request):
 			next_id = 1
 			if(Match.objects.all()):
 				next_id = Match.objects.last().id + 1
-			Match.objects.create(id=next_id,team1=team1,team1_logo=team1_logo,team2=team2,team2_logo=team2_logo,date=date,location=location,priceA=priceA,priceB=priceB,priceC=priceC,streaming_title=streaming_title,streaming_body=streaming_body,streaming_video=streaming_video)
+			Match.objects.create(id=next_id,team1=team1,team1_logo=team1_logo,team2=team2,team2_logo=team2_logo,date=date,location=location,score_team1=score_team1,score_team2=score_team2,priceA=priceA,priceB=priceB,priceC=priceC,streaming_title=streaming_title,streaming_body=streaming_body,streaming_video=streaming_video)
 			return HttpResponseRedirect('matches')
 		form = AddMatch()
 		return render(request, 'Add-Match.html', {'form': form})
@@ -376,6 +389,8 @@ def editmatch(request,id,type):
 			team2_logo = Matchform['team2_logo']
 			date = Matchform['date']
 			location = Matchform['location']
+			score_team1 = Matchform['score_team1']
+			score_team2 = Matchform['score_team2']
 			priceA = Matchform['priceA']
 			priceB = Matchform['priceB']
 			priceC = Matchform['priceC']
@@ -394,6 +409,10 @@ def editmatch(request,id,type):
 					e.team2_logo = team2_logo
 					e.date = date
 					e.location = location
+					if score_team1 is not None:
+						e.score_team1 = score_team1
+					if score_team2 is not None:
+						e.score_team2 = score_team2
 					e.priceA = priceA
 					e.priceB = priceB
 					e.priceC = priceC
@@ -405,7 +424,8 @@ def editmatch(request,id,type):
 						return HttpResponseRedirect('matches')
 					return HttpResponseRedirect('past_matches')
 		form = AddMatch()
-		return render(request, 'Edit-Match.html', {'form': form})
+		message = "incorrect video link"
+		return render(request, 'Edit-Match.html', {'form': form,'message':message})
 	form = AddMatch()
 	return render(request,'Edit-Match.html',{'form':form})
 
@@ -479,6 +499,7 @@ def addmerch(request):
 			item_name = Matchform['item_name']
 			price = Matchform['price']
 			item_image = Matchform['item_image']
+			stock = Matchform['stock']
 			if price < 0:
 				form = AddMerchandise()
 				message = "Invalid Price"
@@ -486,7 +507,7 @@ def addmerch(request):
 			next_id = 1
 			if(Merchandise.objects.all()):
 				next_id = Merchandise.objects.last().id + 1
-			Merchandise.objects.create(id=next_id,item_name=item_name,price=price,item_image=item_image)
+			Merchandise.objects.create(id=next_id,item_name=item_name,price=price,item_image=item_image,stock=stock)
 			return HttpResponseRedirect('merchandise')
 		form = AddMerchandise()
 		return render(request, 'Add-Merch.html', {'form': form})
@@ -552,10 +573,11 @@ def buyA(request):
 			card_number = PurchaseForm['card_number']
 			experation_date = PurchaseForm['experation_date']
 			CCV = PurchaseForm['CCV']
-			for e in Cart.objects.all().filter(user_id=int(user)):
+			for e in Cart.objects.all().filter(user_id=user):
 				if 'Ticket' in e.item:
-					match = Match.objects.get(id = int(e.item[-1]))
-					if match.num_tickets < e.amount:
+					match = Match.objects.get(id = int(e.item[-2]))
+					zone = e.item[-1]
+					if zone == 'A' and match.num_ticketsA < e.amount or zone == 'B' and match.num_ticketsB < e.amount or zone == 'C' and match.num_ticketsC < e.amount:
 						cart = Cart.objects.all().filter(user_id=int(user))
 						total = 0
 						for e in Cart.objects.all().filter(user_id=int(user)):
@@ -563,6 +585,15 @@ def buyA(request):
 						form = CreditCardForm()
 						message = 'not enough available tickets'
 						return render(request,'buy.html',{'cart':cart , 'total':total, 'form':form, 'message':message })
+					if zone == 'A':
+						match.num_ticketsA -= e.amount
+						match.save()
+					if zone == 'B':
+						match.num_ticketsB -= e.amount
+						match.save()
+					if zone == 'C':
+						match.num_ticketsC -= e.amount
+						match.save()
 				elif Merchandise.objects.get(item_name=item).stock < e.amount:
 					cart = Cart.objects.all().filter(user_id=int(user))
 					total = 0
@@ -574,7 +605,11 @@ def buyA(request):
 				next_id = 1
 				if(Purchases.objects.all()):
 					next_id = Purchases.objects.last().id + 1
-				Purchases.objects.create(id=next_id,user_id=user,item = e.item, price = e.price, amount = e.amount)
+				Purchases.objects.create(id=next_id,user_id=user,item = e.item, price = e.price, amount = e.amount, date = date.today())
+				next_id = 1
+				if(Revenue.objects.all()):
+					next_id = Purchases.objects.last().id + 1
+				Revenue.objects.create(id=next_id,department_name='Tickets',item_name = e.item, item_price = e.price, item_amount = e.amount, item_date = date.today())
 			cart = Cart.objects.all().filter(user_id=int(user))
 			total = 0
 			for e in Cart.objects.all().filter(user_id=int(user)):
@@ -588,6 +623,16 @@ def buyA(request):
 		total += e.price*e.amount
 	form = CreditCardForm()
 	return render(request,'buy.html',{'cart':cart , 'total':total, 'form':form })
+
+def buyM(request,id):
+	user = request.session['user']
+	merch = Merchandise.objects.get(id=id)
+	next_id = 1
+	if(Cart.objects.all()):
+		next_id = Cart.objects.last().id + 1
+	Cart.objects.all().filter(item=merch.item_name).filter(user_id=user).delete()
+	Cart.objects.create(id=next_id,user_id=user,item = merch.item_name, price = merch.price, amount = 1)
+	return HttpResponseRedirect('buyA')
 
 def news(request):
 	news = News.objects.order_by('news_date').all()
@@ -606,17 +651,14 @@ def make_table(department, month):
 	df1 = df1[df1["expense_date"].str.contains(month)]
 	df1.rename(columns={"expense_name":"Expense Name", "department_expense":"Expense Amount","expense_date": "Expense Date"},inplace=True)
 	total0 = int(df1["Expense Amount"].astype(int).sum(axis=0))
-	df2_temp = df2[["merch_name", "merch_date","merch_price"]]
-	df2_temp2 = df2[["ticket_name", "ticket_date","ticket_price"]]
-	df2_temp = df2_temp[df2_temp["merch_date"].str.contains(month)]
-	df2_temp2 = df2_temp2[df2_temp2["ticket_date"].str.contains(month)]
-	total1 = int(df2_temp["merch_price"].astype(int).sum(axis=0))
-	total2 = int(df2_temp2["ticket_price"].astype(int).sum(axis=0))
-	df2 = pd.concat([df2_temp.reset_index(drop=True),df2_temp2.reset_index(drop=True)],axis=1)
-	df2.rename(columns={"merch_name":"Merch Name", "merch_price":"Merch Price","merch_date": "Merch Date","ticket_name":"Ticket Name", "ticket_price":"Ticket Price","ticket_date": "Ticket Date"},inplace=True)
+	df2_temp = df2[["item_name", "item_date","item_price"]]
+	df2_temp = df2_temp[df2_temp["item_date"].str.contains(month)]
+	total1 = int(df2_temp["item_price"].astype(int).sum(axis=0))
+	df2 = df2_temp.reset_index(drop=True)
+	df2.rename(columns={"item_name":"Item Name", "item_price":"Item Price","item_date": "Item Date"},inplace=True)
 	df = pd.concat([df1.reset_index(drop=True), df2.reset_index(drop=True)],axis=1)
 	df.to_csv("report.csv",index=False)
-	totalRevenue = total1 + total2
+	totalRevenue = total1
 	totalExpenses = total0
 	return {"OverallExpenses": totalExpenses,"OverallRevenue": totalRevenue}
 
@@ -767,9 +809,6 @@ def record_expense(request):
 			return render(request, 'Record-Expenses.html', { 'form': form, "message": message })
 	form = ExpenseForm()
 	return render(request, 'Record-Expenses.html', {'form': form})
-	
-def home_staff(request):
-	return render(request,'HOME_Staff.html')
 
 def matches(request):
 	user = request.session['user']
@@ -801,13 +840,14 @@ def ticket(request,id):
 		form = GetPrice(request.POST)
 		if form.is_valid():
 			price = request.POST.get('price')
+			zone = request.POST.get('zone')
 			if price is not None:
 				next_id = 1
 				if(Cart.objects.all()):
 					next_id = Cart.objects.last().id + 1
 				
-				Cart.objects.all().filter(item='Tickets'+ str(id)).filter(user_id=user).delete()
-				Cart.objects.create(id=next_id,user_id=user,item = 'Tickets'+ str(id), price = price, amount = 1)
+				Cart.objects.all().filter(item='Tickets'+ str(id) + zone).filter(user_id=user).delete()
+				Cart.objects.create(id=next_id,user_id=user,item = 'Tickets'+ str(id) + zone, price = price, amount = 1)
 				cart = Cart.objects.all().filter(user_id=user)
 				return HttpResponseRedirect('buyA')
 				return render(request,'buy.html',{'cart':cart , 'total':price,	"staff":staff})
@@ -829,7 +869,7 @@ def player_login(request):
 					request.session['user'] = A.id
 					request.session['player'] = True
 					player = request.session['player']
-					return render(request, 'HOME.html', { 'user': A.username, 'player':player })
+					return HttpResponseRedirect('home_main')
 		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Player-Login.html', {'form': form, 'message':message})
@@ -849,17 +889,20 @@ def player_signup(request):
 			password = Playerform['password']
 			confirm_password = Playerform['confirm_password']
 			email = Playerform['email']
+			gender = Playerform['gender']
+			position = Playerform['position']
+			photo = Playerform['photo']
 			next_id = 1
 			if(Player.objects.all()):
 				next_id = Player.objects.last().id + 1
-			Player.objects.create(id=next_id,name=name,username=username,password=password,confirm_password=confirm_password,email=email)
+			Player.objects.create(id=next_id,name=name,username=username,password=password,confirm_password=confirm_password,email=email,gender=gender,position=position,photo=photo)
 			for e in Player.objects.all():
 				if e.username==username and e.password==password:
 					A=e
 					request.session['user'] = A.id
 					request.session['player'] = True
 					player = request.session['player']
-					return render(request, 'HOME.html', { 'user': A.username, 'player':player})
+					return HttpResponseRedirect('home_main')
 	form = CreatePlayerForm()
 	S = Player.objects.all()
 	return render(request, 'Player-Signup.html', {'form': form,'S':S})
@@ -897,7 +940,7 @@ def fan_login(request):
 					request.session['user'] = A.id
 					request.session['fan'] = True
 					fan = request.session['fan']
-					return render(request, 'HOME.html', { 'user': A.username, 'fan':fan })
+					return HttpResponseRedirect('home_main')
 		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Fan-Login.html', {'form': form, 'message':message})
@@ -948,7 +991,7 @@ def fan_signup(request):
 					request.session['user'] = A.id
 					request.session['fan'] = True
 					fan = request.session['fan']
-					return render(request, 'HOME.html', { 'user': A.username, 'fan':fan})
+					return HttpResponseRedirect('home_main')
 	form = CreateForm()
 	S = Fan.objects.all()
 	return render(request, 'Fan-Signup.html', {'form': form,'S':S})
@@ -985,7 +1028,7 @@ def staff_login(request):
 					A=e
 					request.session['user'] = A.id
 					request.session['staff'] = True
-					return render(request, 'HOME_Staff.html', { 'user': A.username })
+					return HttpResponseRedirect('home_staff')
 		form = FindForm()
 		message = "Incorrect User Name or Password"
 		return render(request, 'Staff-Login.html', {'form': form,'message':message})

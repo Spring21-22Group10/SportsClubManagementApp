@@ -51,8 +51,10 @@ urlpatterns = [
     url(r'^addwomenleague',views.addwomenleague),
     url(r'^expenses',views.expenses),
     url(r'^schedule',views.schedule),
-    path('team(<int:id>)', views.team, name='team'),
+    url(r'^add_team',views.add_team),
+    url(r'^history',views.history),
     path('item(<int:id>)', views.item, name='item'),
+    path('buyM(<int:id>)', views.buyM, name='buyM'),
     path('fan_ticket_login(<int:id>)', views.fan_ticket_login, name='fan_ticket_login'),
     path('ticket(<int:id>)', views.ticket, name='ticket'),
     path('remove(<int:id>)',views.remove, name='remove'),
@@ -71,4 +73,6 @@ urlpatterns = [
     path('deletewomenleague(<int:id>)', views.deletewomenleague, name='deletewomenleague'),
     path('editmenleague(<int:id>)', views.editmenleague, name='editmenleague'),
     path('editwomenleague(<int:id>)', views.editwomenleague, name='editwomenleague'),
+    path('delete_team(<int:id>)', views.delete_team, name='delete_team'),
+    path('edit_team(<int:id>)', views.edit_team, name='edit_team'),
 ]

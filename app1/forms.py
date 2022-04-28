@@ -104,13 +104,15 @@ class CreditCardForm(ModelForm):
 class AddMatch(ModelForm):
 	class Meta:
 		model = Match
-		fields = ['team1','team1_logo', 'team2','team2_logo','location','date','priceA','priceB','priceC','num_ticketsA','num_ticketsB','num_ticketsC','streaming_title','streaming_body','streaming_video']
+		fields = ['team1','team1_logo', 'team2','team2_logo','location','date','score_team1','score_team2','priceA','priceB','priceC','num_ticketsA','num_ticketsB','num_ticketsC','streaming_title','streaming_body','streaming_video']
 		widgets = {
 			'team1' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team 1 Name",  'style':'padding: 10px 10px 10px 10px'}),
 			'team1_logo' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
 			'team2' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team 2 Name",  'style':'padding: 10px 10px 10px 10px'}),
 			'team2_logo' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
 			'date' : forms.DateInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
+			'score_team1' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Score Team 1",  'style':'padding: 10px 10px 10px 10px'}),
+			'score_team2' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Score Team 2",  'style':'padding: 10px 10px 10px 10px'}),
 			'location' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Match Location",  'style':'padding: 10px 10px 10px 10px'}),
 			'priceA' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone A",  'style':'padding: 10px 10px 10px 10px'}),
 			'priceB' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone B",  'style':'padding: 10px 10px 10px 10px'}),
@@ -168,4 +170,14 @@ class AddWomenLeague(ModelForm):
 			'rank' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Rank",  'style':'padding: 10px 10px 10px 10px'}),
 		}
 
+class AddTeam(ModelForm):
+	class Meta:
+		model = Team
+		fields = ['name',"gender", "position",'photo']
+		widgets = {
+			'name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
+			'gender' : forms.Select(choices=choicesGender,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your gender",  'style':'padding: 10px 10px 10px 10px'}),
+			'position' : forms.Select(choices=choicesPosition,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your position",  'style':'padding: 10px 10px 10px 10px'}),
+			"photo" : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+		}
 

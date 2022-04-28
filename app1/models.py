@@ -73,6 +73,8 @@ class Match(models.Model):
     team2_logo = models.ImageField(null=True,blank=True,upload_to='matches')
     location = models.CharField(max_length=30)
     date = models.DateField()
+    score_team1 = models.IntegerField(null=True)
+    score_team2 = models.IntegerField(null=True)
     priceA = models.IntegerField()
     priceB = models.IntegerField()
     priceC = models.IntegerField()
@@ -98,13 +100,11 @@ class Expenses(models.Model):
 class Revenue(models.Model):
     id = models.IntegerField(primary_key=True)
     department_name = models.CharField(max_length=30)
-    merch_name = models.CharField(max_length=30)
-    merch_date = models.CharField(max_length=30)
-    merch_price = models.CharField(max_length=30)
-    ticket_name = models.CharField(max_length=30)
-    ticket_date = models.CharField(max_length=30)
-    ticket_price = models.CharField(max_length=30)
-
+    item_name = models.CharField(max_length=30)
+    item_date = models.CharField(max_length=30)
+    item_price = models.CharField(max_length=30)
+    item_amount = models.CharField(max_length=30)
+    
 choicesMonth = [
     ('January', 'January'),
     ('February',"February"),
@@ -167,6 +167,7 @@ class Purchases(models.Model):
     item = models.CharField(max_length=30)
     price = models.IntegerField()
     amount = models.IntegerField()
+    date = models.DateField(null=True)
 
 class LeaguesMen(models.Model):
     id = models.IntegerField(primary_key=True)

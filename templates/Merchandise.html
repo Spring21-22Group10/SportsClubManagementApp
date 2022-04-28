@@ -64,6 +64,12 @@
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
                 </li>
+                {% if player is not None %}
+                <li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="schedule" style="padding: 28px 30px;">Schedule</a>
+                </li>
+                {% else %}
                 <li class="u-nav-item">
                   <div class="dropdown"> <a
                       class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
@@ -72,19 +78,37 @@
                         Matches</a> <a href="leagues">leagues</a> </div>
                   </div>
                 </li>
+                {% endif %}
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
                 </li>
+                {% if player is None %}
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
+                {% endif %}
+                {% if staff is not None%}
+                <li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="expenses" style="padding: 28px 30px;">Expenses</a>
+                </li>
+                <li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="Report" style="padding: 28px 30px;">Report</a>
+                </li>
+                {% endif %}
               </ul>
-              {% if user is not None%}
-              <a style="padding: 28px 180px;"></a>
-              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log
-                  out</a> </div>
+              {% if staff is not None %}
+              <a style="padding: 20px 250px;"></a>
+              <div class="dropdown"> <a href="index">Log out</a> </div>
+              {% elif user is not None %}
+              <a style="padding: 28px 220px;"></a>
+              <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Welcome!</button>
+                <div class="dropdown-content"> <a href="index">Log Out</a> <a href="buyA">Cart</a> <a
+                    href="history">Purchases</a> </div>
+              </div>
               {% else %}
               <a style="padding: 28px 220px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
@@ -117,10 +141,26 @@
               </div>
               <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
             </div>
-          </nav><a href="home_main" data-page-id="85594514" class="u-image u-logo u-image-1" title="HOME">
+          </nav>
+          {% if staff is not None %}
+          <a href="home_staff" class="u-image u-logo u-image-1">
             <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}"
               class="u-logo-image u-logo-image-1">
           </a>
+          {% elif user is not None%}
+                    <a href="home_main" class="u-image u-logo u-image-1">
+                        <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}"
+                            class="u-logo-image u-logo-image-1">
+                    </a>
+                    {% else %}
+                    <a href="index" class="u-image u-logo u-image-1">
+                        <img src="{% static 'SportsClubManagementApp/images/default-logo.png'%}"
+                            class="u-logo-image u-logo-image-1">
+                    </a>
+                    {% endif %}
+        </div>
+      </div>
+    </div>
   </header>
   <section class="u-align-center u-clearfix u-section-1" id="carousel_2e01">
     {% if staff is not None%}
@@ -139,7 +179,7 @@
             <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
               <img src="{{i.item_image.url}}" alt="" class="u-expanded-width u-image u-image-default u-image-1"
                 data-image-width="225" data-image-height="225">
-              {% if user is not None%}
+              {% if staff is not None%}
               <div>
                 <a href="{% url 'item' i.id %}" class="u-text u-text-4">{{i.item_name}}</a>
                 {{i.price}}$
@@ -148,6 +188,8 @@
                 <a href="{% url 'deletemerch' i.id%}"
                   class="u-border-2 u-border-hover-palette-1-base u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-none u-radius-50 u-btn-1">delete</a>
               </div>
+              {% elif user is not None %}
+              <div><a href="{% url 'buyM' i.id%}" class="u-text u-text-4">{{i.item_name}}</a>{{i.price}}$</div>
               {% else %}
               <div><a href="fan_login" class="u-text u-text-4">{{i.item_name}}</a>{{i.price}}$</div>
               {% endif %}

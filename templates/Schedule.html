@@ -85,15 +85,13 @@
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
                 </li>
-                <li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="merchandise" style="padding: 28px 30px;">Merchandise</a>
-                </li>
               </ul>
               {% if user is not None %}
-              <a style="padding: 28px 180px;"></a>
-              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log
-                  out</a> </div>
+              <a style="padding: 28px 220px;"></a>
+              <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Welcome!</button>
+                <div class="dropdown-content"> <a href="index">Log Out</a> <a href="buyA">Cart</a> <a
+                    href="history">Purchases</a> </div>
+              </div>
               {% else %}
               <a style="padding: 28px 220px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>

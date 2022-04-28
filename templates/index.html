@@ -120,9 +120,9 @@
       </div>
     </div>
   </header>
-  <section class="u-align-center u-clearfix u-section-1" id="sec-d5c7">
+  <section class="u-align-center u-gradient u-clearfix u-section-1" id="sec-d5c7">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <h2 class="u-text u-text-default u-text-1">Insert Text Here</h2>
+      <h2 class="u-text u-text-default u-text-1">{{news1.news_title}}</h2>
       <div id="carousel-bd35" data-interval="5000" data-u-ride="carousel"
         class="u-carousel u-expanded-width-xs u-slider u-slider-1">
         <ol class="u-absolute-hcenter u-carousel-indicators u-hidden u-carousel-indicators-1">
@@ -135,11 +135,9 @@
               <img alt=""
                 class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-1"
                 data-image-width="1280" data-image-height="716"
-                src="{% static 'SportsClubManagementApp/images/9.svg'%}">
-              <h4 class="u-text u-text-default u-text-2">Insert Text Here</h4>
-              <p class="u-text u-text-3">Sample text. Click to select the text box. Click again or double click to start
-                editing the text.&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+                src="{{news1.news_image.url}}">
+              <h4 class="u-text u-text-default u-text-2">{{news1.news_title}}</h4>
+              <p class="u-text u-text-3">{{news1.news_main}}</p>
             </div>
           </div>
           <div class="u-align-center u-carousel-item u-container-style u-slide">
@@ -147,11 +145,9 @@
               <img alt=""
                 class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xl u-image u-image-default u-image-2"
                 data-image-width="1280" data-image-height="716"
-                src="{% static 'SportsClubManagementApp/images/9.svg'%}">
-              <h4 class="u-text u-text-default u-text-4">Sample Headline</h4>
-              <p class="u-text u-text-5">Sample text. Click to select the text box. Click again or double click to start
-                editing the text.&nbsp;Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+                src="{{news2.news_image.url}}">
+              <h4 class="u-text u-text-default u-text-4">{{news2.news_title}}</h4>
+              <p class="u-text u-text-5">{{news2.news_main}}</p>
             </div>
           </div>
         </div>
