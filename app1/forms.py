@@ -1,12 +1,27 @@
 from django.forms import ModelForm, widgets
-from .models import Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue, Report, Cart, Price, CreditCard, choicesMonth, Match, Merchandise
+from .models import LeaguesMen, LeaguesWomen,Player,Find,Fan,Staff,Forgot,Reset, Expenses, Revenue, Report, Cart, Price, CreditCard, choicesMonth, Match, Merchandise, News,Team, choicesPosition, choicesGender
 from django import forms
 
 # Create the form class.
+class CreatePlayerForm(ModelForm):
+	class Meta:
+		model = Player
+		fields = ['name','username', 'email', 'password', 'confirm_password', "gender", "position","photo"]
+		widgets ={
+			'name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
+			'username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name", 'style':'padding: 10px 10px 10px 10px'}),
+			'email' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your email", 'style':'padding: 10px 10px 10px 10px'}),
+			'password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
+			'confirm_password' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Re-enter a password", 'type':'password', 'style':'padding: 10px 10px 10px 10px'}),
+			'gender' : forms.Select(choices=choicesGender,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your gender",  'style':'padding: 10px 10px 10px 10px'}),
+			'position' : forms.Select(choices=choicesPosition,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your position",  'style':'padding: 10px 10px 10px 10px'}),
+			"photo" : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+		}
+
 class CreateForm(ModelForm):
 	class Meta:
 		model = Player
-		fields = ['name','username', 'email', 'password', 'confirm_password']
+		fields = ['name', 'username', 'email', 'password', 'confirm_password']
 		widgets ={
 			'name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
 			'username' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter a User Name", 'style':'padding: 10px 10px 10px 10px'}),
@@ -85,32 +100,84 @@ class CreditCardForm(ModelForm):
 			'CCV' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"___",  'style':'padding: 10px 10px 10px 10px'}),
 		}
 
+
 class AddMatch(ModelForm):
 	class Meta:
 		model = Match
-		fields = ['team1','team1_logo', 'team2','team2_logo','location','date','priceA','priceB','priceC']
+		fields = ['team1','team1_logo', 'team2','team2_logo','location','date','score_team1','score_team2','priceA','priceB','priceC','num_ticketsA','num_ticketsB','num_ticketsC','streaming_title','streaming_body','streaming_video']
 		widgets = {
 			'team1' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team 1 Name",  'style':'padding: 10px 10px 10px 10px'}),
 			'team1_logo' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
 			'team2' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team 2 Name",  'style':'padding: 10px 10px 10px 10px'}),
 			'team2_logo' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
-			'date' : forms.DateInput(format='%d-%m-%Y',attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
+			'date' : forms.DateInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
+			'score_team1' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Score Team 1",  'style':'padding: 10px 10px 10px 10px'}),
+			'score_team2' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Score Team 2",  'style':'padding: 10px 10px 10px 10px'}),
 			'location' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Match Location",  'style':'padding: 10px 10px 10px 10px'}),
 			'priceA' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone A",  'style':'padding: 10px 10px 10px 10px'}),
 			'priceB' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone B",  'style':'padding: 10px 10px 10px 10px'}),
 			'priceC' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Price Zone C",  'style':'padding: 10px 10px 10px 10px'}),
+			'num_ticketsA' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Total Number of Tickets for Zone A",  'style':'padding: 10px 10px 10px 10px'}),
+			'num_ticketsB' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Total Number of Tickets for Zone B",  'style':'padding: 10px 10px 10px 10px'}),
+			'num_ticketsC' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Total Number of Tickets for Zone C",  'style':'padding: 10px 10px 10px 10px'}),
+			'streaming_title' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter The Streaming Title",  'style':'padding: 10px 10px 10px 10px'}),
+			'streaming_body' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter The Streaming Description",  'style':'padding: 10px 10px 10px 10px'}),
+			'streaming_video' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Streaming Link",  'style':'padding: 10px 10px 10px 10px'}),
 		}
 
 class AddMerchandise(ModelForm):
 	class Meta:
 		model = Merchandise
-		fields = ['item_name','price','item_image']
+		fields = ['item_name','price','item_image', 'stock']
 		widgets = {
 			'item_name' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Item Name",  'style':'padding: 10px 10px 10px 10px'}),
 			'price' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Item Price",  'style':'padding: 10px 10px 10px 10px'}),
 			'item_image' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+			'stock' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Available Stock",  'style':'padding: 10px 10px 10px 10px'}),
 		}
 
+class AddNews(ModelForm):
+	class Meta:
+		model = News
+		fields = ['news_title','news_main', 'news_image','news_date','news_number']
+		widgets = {
+			'news_title' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter News Title",  'style':'padding: 10px 10px 10px 10px'}),
+			'news_main' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter News Main",  'style':'padding: 10px 10px 10px 10px'}),
+			'news_image' : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+			'news_date' : forms.DateInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px','type': 'date'}),
+			'news_number' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter News number",  'style':'padding: 10px 10px 10px 10px'}),
+		}
 
+class AddMenLeague(ModelForm):
+	class Meta:
+		model = LeaguesMen
+		fields = ['team_name','points', 'rank']
+		widgets = {
+			'team_name' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team name",  'style':'padding: 10px 10px 10px 10px'}),
+			'points' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Points",  'style':'padding: 10px 10px 10px 10px'}),
+	
+			'rank' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Rank",  'style':'padding: 10px 10px 10px 10px'}),
+		}
 
+class AddWomenLeague(ModelForm):
+	class Meta:
+		model = LeaguesWomen
+		fields = ['team_name','points', 'rank']
+		widgets = {
+			'team_name' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Team name",  'style':'padding: 10px 10px 10px 10px'}),
+			'points' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Points",  'style':'padding: 10px 10px 10px 10px'}),
+	
+			'rank' : forms.TextInput(attrs={'class': 'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter Rank",  'style':'padding: 10px 10px 10px 10px'}),
+		}
+
+class AddTeam(ModelForm):
+	class Meta:
+		model = Team
+		fields = ['name',"gender", "position",'photo']
+		widgets = {
+			'name' : forms.TextInput(attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Enter your name", 'style':'padding: 10px 10px 10px 10px'}),
+			'gender' : forms.Select(choices=choicesGender,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your gender",  'style':'padding: 10px 10px 10px 10px'}),
+			'position' : forms.Select(choices=choicesPosition,attrs={'class':'u-grey-5 u-input u-input-rectangle', 'placeholder':"Select your position",  'style':'padding: 10px 10px 10px 10px'}),
+			"photo" : forms.FileInput(attrs={'class': 'u-input', 'style':'padding: 10px 10px 10px 10px'}),
+		}
 

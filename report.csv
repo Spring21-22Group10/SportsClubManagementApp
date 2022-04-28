@@ -1,1 +1,2 @@
-Expense Date,Expense Amount,Expense Name,Merch Name,Merch Date,Merch Price,Ticket Name,Ticket Date,Ticket Price
+Expense Date,Expense Amount,Expense Name,Item Name,Item Date,Item Price
+"April 1st, 2022",200,tickets,Tickets3B,"April 1st, 2022",100

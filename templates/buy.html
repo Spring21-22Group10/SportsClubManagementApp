@@ -40,8 +40,8 @@
 </head>
 
 <body class="u-xl-mode">
-  <header class=" u-clearfix u-header u-section-row-container u-body" id="sec-cb7a" >
-    <div class="u-section-rows" >
+  <header class=" u-clearfix u-header u-section-row-container u-body" id="sec-cb7a">
+    <div class="u-section-rows">
       <div class="u-clearfix u-palette-1-base u-section-row u-sticky u-sticky-fcf0 u-section-row-1"
         data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""
         id="sec-3c7e">
@@ -69,23 +69,30 @@
                 <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="news" style="padding: 28px 30px;">News</a>
-                </li><li class="u-nav-item">
-                                    <div class="dropdown"> <a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="matches" style="padding: 28px 30px;">Matches</a>
-                                        <div class="dropdown-content"> <a href="matches">upcoming matches</a> <a href="past_matches">Past Matches</a> <a href="leagues">leagues</a> </div>
-                                    </div>
-                                </li><li class="u-nav-item"><a
-                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
-                    href="tickets" style="padding: 28px 30px;">Tickets</a>
-                </li><li class="u-nav-item"><a
+                </li>
+                <li class="u-nav-item">
+                  <div class="dropdown"> <a
+                      class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                      href="matches" style="padding: 28px 30px;">Matches</a>
+                    <div class="dropdown-content"> <a href="matches">upcoming matches</a> <a href="past_matches">Past
+                        Matches</a> <a href="leagues">leagues</a> </div>
+                  </div>
+                </li>
+                <li class="u-nav-item"><a
                     class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
                     href="teams" style="padding: 28px 30px;">Teams</a>
-                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="stream" style="padding: 28px 30px;">Stream</a>
-                </li><li class="u-nav-item"><a class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white" href="merchandise" style="padding: 28px 30px;">Merchandise</a>
+                </li>
+                <li class="u-nav-item"><a
+                    class="u-active-grey-5 u-border-active-black u-border-hover-palette-1-base u-button-style u-hover-grey-10 u-nav-link u-palette-5-dark-2 u-text-active-grey-90 u-text-hover-grey-90 u-text-white"
+                    href="merchandise" style="padding: 28px 30px;">Merchandise</a>
                 </li>
               </ul>
-              {% if user is not None%}
-              <a style="padding: 28px 180px;"></a>
-              <div class="dropdown"> <a href="buyA">Cart</a> <a style="padding: 28px 20px;"></a> <a href="index">Log out</a> </div>
+              {% if user is not None %}
+              <a style="padding: 28px 220px;"></a>
+              <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Welcome!</button>
+                <div class="dropdown-content"> <a href="index">Log Out</a> <a href="buyA">Cart</a> <a
+                    href="history">Purchases</a> </div>
+              </div>
               {% else %}
               <a style="padding: 28px 180px;"></a>
               <div class="dropdown"> <button class="dropbtn u-btn-round u-radius-6">Log In</button>
@@ -101,14 +108,18 @@
                   <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
                     <li class="u-nav-item"><a class="u-button-style u-nav-link" href="news"
                         style="padding: 28px 30px;">News</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="matches"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="matches"
                         style="padding: 28px 30px;">Matches</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="tickets"
                         style="padding: 28px 30px;">Tickets</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="teams"
                         style="padding: 28px 30px;">Teams</a>
-                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise">Merchandise</a>
-</li>
+                    </li>
+                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="merchandise">Merchandise</a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -131,86 +142,88 @@
     </div>
   </header>
   <section class="u-clearfix u-section-1" id="sec-f0ac">
-  <div class="container-fluid background">
-    <div class="row padding-top-20">
-      <div
-        class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-8 offset-md-1 offset-lg-1 offset-xl-2 padding-horizontal-40">
-        <div class="row">
-          <div class="col-12 main-wrapper">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <div id="template" class="row panel-wrapper">
-                  <div class="col-12 panel-header basket-header">
-                    <div class="row">
-                      <div class="col-6 basket-title">
-                        <span class="description">review your</span><br><span class="emphasized">Cart Summary</span>
+    <div class="container-fluid background">
+      <div class="row padding-top-20">
+        <div
+          class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-8 offset-md-1 offset-lg-1 offset-xl-2 padding-horizontal-40">
+          <div class="row">
+            <div class="col-12 main-wrapper">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div id="template" class="row panel-wrapper">
+                    <div class="col-12 panel-header basket-header">
+                      <div class="row">
+                        <div class="col-6 basket-title">
+                          <span class="description">review your</span><br><span class="emphasized">Cart Summary</span>
+                        </div>
+                        <div class="col-6 order-number align-right">
+                          <span class="description">order #</span><br><span class="emphasized">{{order_number}}</span>
+                        </div>
                       </div>
-                      <div class="col-6 order-number align-right">
-                        <span class="description">order #</span><br><span class="emphasized">{{order_number}}</span>
-                      </div>
-                    </div>
-                    <div class="row column-titles padding-top-10">
-                      <div class="col-2 align-center"><span>Photo</span></div>
-                      <div class="col-5 align-center"><span>Name</span></div>
-                      <div class="col-2 align-center"><span>Quantity</span></div>
-                      <div class="col-3 align-right"><span>Price</span></div>
-                    </div>
-                  </div>
-                  <div class="col-12 panel-body basket-body" style="font-size: 3em;">
-                    {% for product in cart %}
-                    <div class="row product">
-                      <div class="col-3">{{product.item}}<br></div>
-                      <div class="col-5 align-right">
-                        <a href="{% url 'remove' product.id %}">-</a>
-                        {{product.amount}}
-                        <a href="{% url 'add' product.id %}">+</a>
-                      </div>
-                      <div class="col-4 align-right">{{product.price}}$</div>
-                    </div>
-                    {% endfor %}
-                  </div>
-                  <div class="col-12 panel-footer basket-footer">
-                    <hr>
-                    <div class="row">
-                      <div class="col-8 align-right description">
-                        <div class="dive">Total</div>
-                      </div>
-                      <div class="col-4 align-right"><span class="emphasized">{{total}}$</span></div>
-                      <div class="col-8 align-right description">
+                      <div class="row column-titles padding-top-10">
+                        <div class="col-2 align-center"><span>Photo</span></div>
+                        <div class="col-5 align-center"><span>Name</span></div>
+                        <div class="col-2 align-center"><span>Quantity</span></div>
+                        <div class="col-3 align-right"><span>Price</span></div>
                       </div>
                     </div>
-                    <hr>
+                    <div class="col-12 panel-body basket-body" style="font-size: 3em;">
+                      {% for product in cart %}
+                      <div class="row product">
+                        <div class="col-3">{{product.item}}<br></div>
+                        <div class="col-5 align-right">
+                          <a href="{% url 'remove' product.id %}">-</a>
+                          {{product.amount}}
+                          <a href="{% url 'add' product.id %}">+</a>
+                        </div>
+                        <div class="col-4 align-right">{{product.price}}$</div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                    <div class="col-12 panel-footer basket-footer">
+                      <hr>
+                      <div class="row">
+                        <div class="col-8 align-right description">
+                          <div class="dive">Total</div>
+                        </div>
+                        <div class="col-4 align-right"><span class="emphasized">{{total}}$</span></div>
+                        <div class="col-8 align-right description">
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="row panel-wrapper">
-                  <div class="col-12 panel-header creditcard-header">
-                    <div class="row">
-                      <div class="col-12 creditcard-title">
-                        <span class="description">please enter your</span><br><span class="emphasized">Credit Card
-                          Information</span>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="row panel-wrapper">
+                    <div class="col-12 panel-header creditcard-header">
+                      <div class="row">
+                        <div class="col-12 creditcard-title">
+                          <span class="description">please enter your</span><br><span class="emphasized">Credit Card
+                            Information</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 panel-body creditcard-body" style="font-size: 1.1em;">
-                    <form action="#" method="POST"
-                      class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form" source="custom"
-                      name="form-2" style="padding: 10px;">
-                      <div class="u-form-group u-form-name">
-                        {% csrf_token %}
-                        {{ form }}
-                      </div>
+                    <div class="col-12 panel-body creditcard-body" style="font-size: 1.1em;">
+                      <form action="#" method="POST"
+                        class="u-clearfix u-form-custom-backend u-form-spacing-35 u-form-vertical u-inner-form"
+                        source="custom" name="form-2" style="padding: 10px;">
+                        <div class="u-form-group u-form-name">
+                          {% csrf_token %}
+                          {{ form }}
+                        </div>
                         <div class="u-align-center u-form-group u-form-submit">
                           <input type="submit" value="submit" class="u-form-control-hidden">
                         </div>
-                  </div>
-                  <div class="col-12 panel-footer creditcard-footer">
-                    <div class="row">
-                      <div class="col-12 align-right"><a class="u-align-center" style="font-size: 1.8em;">{{message}} </a><button class="confirm">Confirm & Pay</button></div>
                     </div>
+                    <div class="col-12 panel-footer creditcard-footer">
+                      <div class="row">
+                        <div class="col-12 align-right"><a class="u-align-center" style="font-size: 1.8em;">{{message}}
+                          </a><button class="confirm">Confirm & Pay</button></div>
+                      </div>
+                    </div>
+                    </form>
                   </div>
-                  </form>
                 </div>
               </div>
             </div>
@@ -218,7 +231,6 @@
         </div>
       </div>
     </div>
-  </div>
   </section>
 
   <footer class="u-clearfix u-footer u-grey-80 u-footer" id="sec-c461">

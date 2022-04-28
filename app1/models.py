@@ -7,6 +7,18 @@ from  embed_video.fields  import  EmbedVideoField
 # Create your models here.
 
 
+choicesGender = [
+    ('Male', 'Male'),
+    ('Female',"Female"),
+    ('Other',"Other")
+]
+choicesPosition = [
+    ('Goalkeeper', 'Goalkeeper'),
+    ('Defender',"Defender"),
+    ('Midfielder',"Midfielder"),
+    ('Forward',"Forward"),
+]
+
 class Player(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=30)
@@ -14,6 +26,16 @@ class Player(models.Model):
     password = models.CharField(max_length=30)
     confirm_password = models.CharField(max_length=30)
     email = models.CharField(max_length=30,unique=True)
+    gender = models.CharField(max_length=30,choices= choicesGender)
+    position = models.CharField(max_length=30,choices= choicesPosition)
+    photo = models.ImageField(null=True,blank=True,upload_to='teams')
+
+class Team(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=30)
+    gender = models.CharField(max_length=30,choices= choicesGender)
+    position = models.CharField(max_length=30,choices= choicesPosition)
+    photo = models.ImageField(null=True,blank=True,upload_to='teams')
 
 class Find(models.Model):
     username = models.CharField(max_length=30,unique=True)
@@ -51,9 +73,21 @@ class Match(models.Model):
     team2_logo = models.ImageField(null=True,blank=True,upload_to='matches')
     location = models.CharField(max_length=30)
     date = models.DateField()
+    score_team1 = models.IntegerField(null=True)
+    score_team2 = models.IntegerField(null=True)
     priceA = models.IntegerField()
     priceB = models.IntegerField()
     priceC = models.IntegerField()
+    num_ticketsA = models.IntegerField()
+    num_ticketsB = models.IntegerField()
+    num_ticketsC = models.IntegerField()
+    streaming_title = models.CharField(max_length=200)
+    streaming_body = models.TextField()
+    streaming_video = EmbedVideoField()
+    class  Meta:
+        verbose_name_plural = "Match"
+    def  __str__(self):
+        return  str(self.streaming_title) if  self.streaming_title  else  " "
 
 class Expenses(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -66,13 +100,11 @@ class Expenses(models.Model):
 class Revenue(models.Model):
     id = models.IntegerField(primary_key=True)
     department_name = models.CharField(max_length=30)
-    merch_name = models.CharField(max_length=30)
-    merch_date = models.CharField(max_length=30)
-    merch_price = models.CharField(max_length=30)
-    ticket_name = models.CharField(max_length=30)
-    ticket_date = models.CharField(max_length=30)
-    ticket_price = models.CharField(max_length=30)
-
+    item_name = models.CharField(max_length=30)
+    item_date = models.CharField(max_length=30)
+    item_price = models.CharField(max_length=30)
+    item_amount = models.CharField(max_length=30)
+    
 choicesMonth = [
     ('January', 'January'),
     ('February',"February"),
@@ -127,6 +159,7 @@ class Merchandise(models.Model):
     item_name = models.CharField(max_length=30)
     price = models.IntegerField()
     item_image = models.ImageField(upload_to= 'merch')
+    stock = models.IntegerField()
 
 class Purchases(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -134,15 +167,7 @@ class Purchases(models.Model):
     item = models.CharField(max_length=30)
     price = models.IntegerField()
     amount = models.IntegerField()
-
-class  Streaming(models.Model):
-	streaming_title = models.CharField(max_length=200)
-	streaming_body = models.TextField()
-	streaming_video = EmbedVideoField()
-	class  Meta:
-		verbose_name_plural = "Streaming"
-	def  __str__(self):
-		return  str(self.streaming_title) if  self.streaming_title  else  " "
+    date = models.DateField(null=True)
 
 class LeaguesMen(models.Model):
     id = models.IntegerField(primary_key=True)
